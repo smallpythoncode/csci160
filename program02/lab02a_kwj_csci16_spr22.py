@@ -13,7 +13,7 @@ Print to the display:
     1. The amount of credits the user has completed so far
     2. The amount of credits the user will have completed after this
     semester
-    3. The number of credits the user will need to complete after this 
+    3. The number of credits the user will need to complete after this
     semester
 
 Using SimpleGraphics, create a bar chart with a legend that

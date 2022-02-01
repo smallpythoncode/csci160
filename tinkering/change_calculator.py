@@ -27,7 +27,6 @@ if tender > cost_of_item:
     change = change % 10
     nickels = change // 5
     pennies = change % 5
-    # denominations = [dollars, quarters, dimes, nickels, pennies]
 
     if dollars > 0:
         if dollars == 1:

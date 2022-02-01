@@ -10,6 +10,7 @@ and 1 mouth.
 from simple_graphics.SimpleGraphics import *
 
 setSize(400, 300)
+# https://trinket.io/docs/colors
 setBackground("hot pink")
 
 # no matter the width of the display, the face is centered along the x-axis

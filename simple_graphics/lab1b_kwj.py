@@ -9,6 +9,7 @@ Using SimpleGraphics, draw a house, a sun, and a tree.
 from simple_graphics.SimpleGraphics import *
 
 setSize(800, 600)
+# https://trinket.io/docs/colors
 setBackground("deep sky blue")
 
 # no matter the width of the display, the sun will be in the upper right
