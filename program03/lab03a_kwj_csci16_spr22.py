@@ -28,23 +28,35 @@ while True:
         break
 
 if 2000 <= year <= 2029:
-    print(f"{year} is within the range of 2000 to 2029.")
+    print(f"Year {year} is within the range of 2000 to 2029.\n")
 else:
-    print(f"{year} is not within the range of 2000 to 2029.")
+    print(f"Year {year} is not within the range of 2000 to 2029.\n")
 
 # prompt_2
 while True:
     try:
         num_credits = int(input("Enter the number or credits you have "
                                 "passed: "))
+        if num_credits < 0:
+            print("It is not possible to have less than 0 credits.\n")
+        elif num_credits >= 0 and num_credits > 360:
+            excess_credits = input("Are you sure you've taken that many "
+                                   "credits? y/n: ").lower()
+            print()
+            if excess_credits in ["y", "yes"]:
+                break
+        else:
+            break
     except ValueError:
         print("Enter year as an integer.\n")
-    else:
-        while num_credits < 0:
-            print("It is not possible to have less than zero credits.")
-        break
 
-# if num_credits < 0:
-
+if num_credits <= 23:
+    print(f"With {num_credits}, you are considered a freshman.")
+elif 24 <= num_credits <= 23:
+    print(f"With {num_credits}, you are considered a sophomore.")
+elif num_credits <= 23:
+    print(f"With {num_credits}, you are considered a junior.")
+else:
+    print(f"With {num_credits}, you are considered a senior.")
 
 # All work and no play makes Jack a dull boy.
