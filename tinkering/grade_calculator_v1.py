@@ -1,3 +1,7 @@
+# guidelines for pass/fail (sat/unsat)
+# A, B, C is pass
+# D, F is fail
+
 percent = round(float(input("Enter class percentage: ")), 2)
 while percent < 0 or percent > 100:
     percent = float(input("Enter class percentage (range 0 to 100, "
