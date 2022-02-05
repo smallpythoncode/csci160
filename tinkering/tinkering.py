@@ -4,4 +4,4 @@ try:
 except ValueError:
     print("That is not an integer.")
 
-print("yolo")
+print("bumpy")
