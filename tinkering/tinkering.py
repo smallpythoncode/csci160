@@ -3,3 +3,5 @@ try:
     print(some_input)
 except ValueError:
     print("That is not an integer.")
+
+print("yolo")
