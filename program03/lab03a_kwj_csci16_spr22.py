@@ -2,7 +2,7 @@
 Jahnke
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160 - Spring 2022
-Lab 3 Part A
+Lab 03 Part A
 
 Prompt the user for three inputs:
     1. A year
@@ -10,11 +10,12 @@ Prompt the user for three inputs:
     3. The student's grade point average (GPA)
 
 After each prompt, generate a respective output:
-    1. The year is or is not within the range of 2000 to 2029 inclusive
+    1. The year is or is not within the range of 2000 to 2029,
+       inclusive
     2. The student's undergraduate classification
     3. A description of the student's GPA
 
-Finally, declare whether the student eligible for to graduate based on
+Finally, declare whether the student is eligible to graduate based on
 GPA and credits passed.
 """
 
