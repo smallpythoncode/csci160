@@ -21,39 +21,19 @@ while True:
     else:
         break
 
-
 if x_coord == 0 and y_coord == 0:
     print("(0, 0) is the origin.")
 elif x_coord == 0:
     print(f"(0, {y_coord:.2f}) is along the y-axis.")
 elif y_coord == 0:
     print(f"({x_coord:.2f}, 0) is along the x-axis.")
-
-
-
-
-
-
-
-elif (x_coord and y_coord) > 0:
-    # elif x_coord > 0 and y_coord > 0:
-    print("makes sense, right????")
-
-
-
-
-
-
-
+elif x_coord > 0 and y_coord > 0:
+    print(f"({x_coord:.2f}, {y_coord:.2f}) is in quadrant I.")
+elif x_coord < 0 < y_coord:
+    print(f"({x_coord:.2f}, {y_coord:.2f}) is in quadrant II.")
+elif x_coord < 0 and y_coord < 0:
+    print(f"({x_coord:.2f}, {y_coord:.2f}) is in quadrant III.")
 else:
-    print("arbitrary")
-# elif x_coord < 0 < y_coord:
-#     print(f"({x_coord}, {y_coord}) is in quadrant II.")
-# elif x_coord < 0 and y_coord == 0:
-#     print(f"({x_coord}, {y_coord}) is in quadrant II.")
-# else:
-#     pass
-
-print(f"({x_coord}, {y_coord})")
+    print(f"({x_coord:.2f}, {y_coord:.2f}) is in quadrant IV.")
 
 # All work and no play makes Jack a dull boy.
