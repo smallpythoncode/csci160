@@ -24,6 +24,7 @@ Prompt for integers until the user enters 0.
 # print("-Part A-")
 
 print("\n-Part B-")
+# these 2 variables are counters, not sentinels (i.e., no effect on loops)
 grades = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
 total_points = 0
 while True:
