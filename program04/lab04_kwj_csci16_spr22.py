@@ -15,6 +15,7 @@ Print a string specifying the start of each part (e.g., "-Part A-")
 4. Display the class average of the quiz to 2 decimal places.
 
 -Part C-
+Prompt for integers until the user enters 0.
 
 -Part D-
 
@@ -28,8 +29,11 @@ total_points = 0
 while True:
     try:
         num_scores = int(input("Enter the number of quiz scores: "))
-        if num_scores <= 0:
+        if num_scores < 0:
             print("The number of scores must be a positive integer.")
+        elif num_scores == 0:
+            print("Refer to the definition of futility.")
+            break
         else:
             scores_counted = 0
             while scores_counted < num_scores:
