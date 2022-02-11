@@ -72,7 +72,32 @@ while num_students < 3:
 
 print("Part 2")
 print("Enter \"999\" to exit.")
+temp_c = int(input("Enter a temperature in Celsius: "))
+while temp_c != 999:
+    if temp_c >= 5500:
+        print("You are probably on the surface of the sun.")
+    elif temp_c >= 33:
+        print("The temperature is extremely hot.")
+    elif 11 <= temp_c <= 32:
+        print("The temperature is warm.")
+    elif -24 <= temp_c <= 10:
+        print("The temperature is cold.")
+    else:
+        print("The temperature is extremely cold.")
 
+    if temp_c > 20:
+        print(f"The temperature is {temp_c - 20}° greater than the average "
+              f"temperature.")
+    elif temp_c < 20:
+        print(f"The temperature is {20 - temp_c}° less than the average "
+              f"temperature.")
+    else:
+        print("The temperature is equivalent to the average temperature.")
 
+    temp_f = round(temp_c * 1.8 + 32)
+    print(f"{temp_c}° C is roughly equivalent to {temp_f}° F.\n")
+    temp_c = int(input("Enter a temperature in Celsius: "))
+
+print("Goodbye!")
 
 # All work and no play makes Jack a dull boy.
