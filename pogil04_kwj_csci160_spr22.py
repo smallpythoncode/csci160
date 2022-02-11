@@ -9,8 +9,8 @@ Refer to Lab 04 - Spring 2022 - Nested Loops for instructions
 This file contains code to answer Part 1, Questions 2.a,. 2.b., 2.c.,
 and 4. It also contains code to answer part 2.
 
-Part 1, Questions 1 and 3 are answered on the .pdf submission, but
-Question 3 is included in code for reference
+Part 1, Questions 1 and 3 are answered on the .pdf submission.
+Question 3 is included as commented code for reference.
 """
 
 # Instructions explicitly state not to test user input
@@ -36,23 +36,42 @@ for row in range(rect_height):
         print(row + 1, end=" ")
     print()
 
-print("\nPart 1, Question 3.")
-height = 5
-print("Enter height:", height)
-for row in range(1, height + 1):
-    for col in range(row):
-        print(row, end=" ")
-    print()
+# print("\nPart 1, Question 3.")
+# # per instructions, height is assumed to be 5
+# height = 5
+# print("Enter height:", height)
+# for row in range(1, height + 1):
+#     for col in range(row):
+#         print(row, end=" ")
+#     print()
 
 print("\nPart 1, Question 4.")
-num = 5
-print("Enter number:", num)
+num = int(input("Enter a number: "))
 for row in range(num, 0, -1):
     for col in range(row):
         print(col + 1, end=" ")
     print()
 
+print("\nPart 1, Question 5.")
+num_students = 0
+while num_students < 3:
+    student = input(f"Enter name of Student {num_students + 1}: ").title()
+    scores = []
+    while len(scores) < 3:
+        try:
+            score = float(input(f"Enter score of Quiz {len(scores) + 1}: "))
+            if 0 <= score <= 100:
+                scores.append(score)
+            else:
+                print("The score must be between 0 and 100.")
+        except ValueError:
+            print("The score must be entered as a number.")
+    print(f"Name: {student}")
+    print(f"Average: {sum(scores) / len(scores):.2f}\n")
+    num_students += 1
 
+print("Part 2")
+print("Enter \"999\" to exit.")
 
 
 
