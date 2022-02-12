@@ -15,10 +15,16 @@ Print a string specifying the start of each part (e.g., "-Part A-")
 4. Display the class average of the quiz to 2 decimal places.
 
 -Part C-
-Prompt for integers until the user enters 0.
+Prompt for integers until the user enters 0, at which time display the
+average of the positive values and the average of the negative values.
+Make no assumption about the type of data entered. If a positive or
+negative value cannot be calculated, state that no values of that type
+(+/-) were entered. Round the averages to 2 decimal places.
 
 -Part D-
-
+Create a table that lists degrees Celsius from 0 to 100 in one column
+and their respective conversion to degrees Fahrenheit in the next
+column. List temperatures as integers and justify them to the right.
 """
 
 # print("-Part A-")
@@ -69,13 +75,39 @@ while True:
             print(f"Class average: {total_points / num_scores:.2f}")
             break
     except ValueError:
-        print("Enter number of scores as an integer.")
+        print("Enter the number of scores as an integer.")
 
-# print("-Part C-")
+print("\n-Part C-")
+print("Enter either positive or negative integers.")
+print("To stop, enter \"0\".")
 
+pos_values = []
+neg_values = []
+while True:
+    value = int(input("Enter a value: "))
+    if value == 0:
+        if len(pos_values) == 0:
+            print("No positive values were entered.")
+        else:
+            print("Average of positive values: "
+                  f"{sum(pos_values) / len(pos_values):.2f}")
+        if len(neg_values) == 0:
+            print("No negative values were entered.")
+        else:
+            print("Average of negative values: "
+                  f"{sum(neg_values) / len(neg_values):.2f}")
+        break
+    elif value > 0:
+        pos_values.append(value)
+    else:
+        neg_values.append(value)
 
-# print("-Part D-")
-
-
+print("\n-Part D-")
+# len_str_c == 7, len_str_f == 10
+print("Celsius | Fahrenheit")
+print("¯" * 8, "|", "¯" * 11, sep="")
+for temp_c in range(0, 101, 5):
+    temp_f = round(temp_c * 1.8 + 32)
+    print(f"{temp_c:>7d}", "|", f"{temp_f:>10d}")
 
 # All work and no play makes Jack a dull boy.
