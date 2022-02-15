@@ -4,9 +4,13 @@ kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160 - Spring 2022
 Lab 04 Parts A, B, C, D
 
-Print a string specifying the start of each part (e.g., "-Part A-")
+Print a string specifying the start of each part (e.g., "-Part B-")
 
 -Part A-
+Using while loops:
+1. Count by 5 from 0 to 25, inclusive.
+2. Count by 1 from 25 to 0, inclusive.
+3. Count by 0.5 from 0 to 10, inclusive. Justify to the right.
 
 -Part B-
 1. Prompt for a number of quiz scores.
@@ -15,11 +19,11 @@ Print a string specifying the start of each part (e.g., "-Part A-")
 4. Display the class average of the quiz to 2 decimal places.
 
 -Part C-
-Prompt for integers until the user enters 0, at which time display the
+Prompt for integers until user enters 0, at which time, display the
 average of the positive values and the average of the negative values.
 Make no assumption about the type of data entered. If a positive or
-negative value cannot be calculated, state that no values of that type
-(+/-) were entered. Round the averages to 2 decimal places.
+negative average cannot be calculated, state that no values of that
+type (+/-) were entered. Round the averages to 2 decimal places.
 
 -Part D-
 Create a table that lists degrees Celsius from 0 to 100 in one column
@@ -27,7 +31,29 @@ and their respective conversion to degrees Fahrenheit in the next
 column. List temperatures as integers and justify them to the right.
 """
 
-# print("-Part A-")
+print("\n-Part A.1-")
+# simpler - 2 lines of code vs ...
+# for num in range(0, 26, 5):
+#     print(num)
+
+# ... 4 lines of code
+num_part1 = 0
+while num_part1 <= 25:
+    print(num_part1)
+    num_part1 += 5
+
+print("\n-Part A.2-")
+num_part2 = 25
+while num_part2 >= 0:
+    print(num_part2)
+    num_part2 -= 1
+
+print("\n-Part A.3-")
+num_part3 = 0
+while num_part3 <= 10:
+    print(f"{num_part3:4.1f}")
+    num_part3 += 0.5
+
 
 print("\n-Part B-")
 grades = {"A": 0, "B": 0, "C": 0, "D": 0, "F": 0}
@@ -77,6 +103,7 @@ while True:
     except ValueError:
         print("Enter the number of scores as an integer.")
 
+
 print("\n-Part C-")
 print("Enter either positive or negative integers.")
 print("To stop, enter \"0\".")
@@ -101,6 +128,7 @@ while True:
         pos_values.append(value)
     else:
         neg_values.append(value)
+
 
 print("\n-Part D-")
 # len_str_c == 7, len_str_f == 10
