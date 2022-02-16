@@ -1,0 +1,7 @@
+To draw text use the showText() command in SimpleGraphics. 
+showText accepts three arguments, x, y, and the text to display. 
+x, y will be the upper left hand corner of the text. 
+showText will write the text using the color set by setOutline.
+
+a fourth argument can be added for justification.
+e.g. "center"
