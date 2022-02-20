@@ -2,7 +2,7 @@
 Jahnke
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160 - Spring 2022
-Program 05, Parts A
+Program 05, Part A
 
 Determine the user's GPA this semester by:
 1. Prompting for the number of classes taken.
@@ -26,8 +26,9 @@ Assumptions:
 - All data entered will be valid (i.e., no error checking is required).
 - No letter grade other than A, B, C, D, or F will be entered (upper
   case).
-- If no GPA can be calculated (e.g., ZeroDivisionError), do not generate
-  any output, simply end the program.
+- If no GPA can be calculated, do not generate any output, simply end
+  the program.
+
 """
 
 total_credits_attempted = 0
@@ -36,6 +37,7 @@ classes_attempted = int(input("Enter the number of classes this semester: "))
 classes_passed = 0
 honor_points = 0
 
+print()
 # if classes_attempted < 1:
 #     print("Then why are you even running this program?")
 # per third assumption
@@ -63,16 +65,12 @@ if classes_attempted > 0:
         times_class_info_entered += 1
         print()
 
-# per third assumption
-try:
+    # all values are assumed to be valid
     print(format("GPA:", "18s"),
           f"{honor_points / total_credits_attempted:.4f}")
     print("Credits attempted:", f"{total_credits_attempted:6d}")
     print(format("Credits passed", "18s"), f"{credits_passed:6d}")
     print("Classes attempted:", f"{classes_attempted:6d}")
     print(format("Classes passed", "18s"), f"{classes_passed:6d}")
-except ZeroDivisionError:
-    pass
-# address assumption 3 with while loop avoiding ZeroDivisionError
 
 # All work and no play makes Jack a dull boy.
