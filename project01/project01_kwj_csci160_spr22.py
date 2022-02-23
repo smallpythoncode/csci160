@@ -26,9 +26,37 @@ majors offered by UND. This would be beneficial if the scope of the
 survey were to track the percentages of all majors. If the user enters a
 major that is not in the list, it could prompt the user to correct
 his/her input. This, of course, is susceptible to innocent data entry
-errors (e.g., entering "History" as "Hitsory"), thus, an expansion of
+errors (e.g., entering "history" as "hitsory"), thus, an expansion of
 this improvement could be to implement the survey as a GUI (e.g.,
 Tkinter) in which the user can select their major from a fixed list.
 """
+
+
+def welcome_message():
+    print("Greetings!\n"
+          "This is a survey of the majors of the students taking CS160.\n"
+          "Have every student enter their major when prompted.\n"
+          "FORMAT\n"
+          "\tComputer Science majors should enter \"cs\"\n"
+          "\tData Science majors should enter \"data\"\n"
+          "\tCyber Security majors should enter \"cyber\"\n"
+          "\tAll other students may enter their major as is or enter "
+          "\"other\"")
+
+def prompt_major():
+    pass
+
+
+
+if __name__ == "__main__":
+    welcome_message()
+
+
+
+# major_tallies = {"Computer Science": 0, "Data Science": 0}
+#
+# major_tallies["Computer Science"] += 1
+#
+# print(major_tallies)
 
 # All work and no play makes Jack a dull boy.
