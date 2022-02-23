@@ -28,7 +28,6 @@ Assumptions:
   case).
 - If no GPA can be calculated, do not generate any output, simply end
   the program.
-
 """
 
 total_credits_attempted = 0
