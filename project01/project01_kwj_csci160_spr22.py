@@ -36,16 +36,41 @@ def welcome_message():
     print("Greetings!\n"
           "This is a survey of the majors of the students taking CS160.\n"
           "Have every student enter their major when prompted.\n"
-          "FORMAT\n"
-          "\tComputer Science majors should enter \"cs\"\n"
+          "Computer Science majors will also be surveyed for their minor.\n"
+          "To complete data entry, enter \"done\" after the major prompt.\n"
+          "After completion, the numbers of majors and minors for CS majors "
+          "and their percentages will be compiled into a table.\n"
+          "\nFORMAT - MAJORS\n"
+          "\tComputer Science (CS) majors should enter \"cs\"\n"
           "\tData Science majors should enter \"data\"\n"
           "\tCyber Security majors should enter \"cyber\"\n"
           "\tAll other students may enter their major as is or enter "
-          "\"other\"")
+          "\"other\"\n"
+          "\nFORMAT - MINORS\n"
+          "\tData Science minors should enter \"data\"\n"
+          "\tCyber Security minors should enter \"cyber\"\n"
+          "\tMathematics minors should enter \"math\"\n"
+          "\tAll other CS students may enter their minor as is or enter "
+          "\"other\"\n"
+          "\tCS students without a minor may enter \"none\" or simply leave "
+          "leave the line blank and hit \"Enter\"\n"
+          )
 
-def prompt_major():
-    pass
 
+def prompt_major(tracked_majors=None, **other_majors):
+    if tracked_majors is None:
+        tracked_majors = {"cs": 0, "data": 0, "cyber": 0, "other": 0}
+
+    def prompt_minor():
+        pass
+
+    prompt = input("Enter a major: ").lower()
+    while True:
+        if prompt == "done":
+            break
+        # TODO: major blank - add message to enter a major or skip
+        elif prompt in tracked_majors.keys():
+            tracked_majors[prompt] += 1
 
 
 if __name__ == "__main__":
