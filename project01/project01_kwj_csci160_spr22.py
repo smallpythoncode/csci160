@@ -56,36 +56,62 @@ def welcome_message():
           "leave the line blank and hit \"Enter\"\n"
           )
 
-
+# FIXME: reassign tracked majors as a default list, exclude None
+# FIXME: may need to be a tuple, can a list be passed in??
 # avoiding mutable argument https://docs.python-guide.org/writing/gotchas/
-def prompt_major(tracked_majors=None):
+def prompt_major(tracked_majors=None, minors_are_tracked=True,
+                 majors_with_minors=None, tracked_minors=None):
+    # establishes default tracked_majors
     if tracked_majors is None:
         tracked_majors = {"cs": 0, "data": 0, "cyber": 0}
+    else:
+        temp_majors = []
+        for major in tracked_majors:
+            temp_majors.append(major)
+        tracked_majors = {}
+        for major in temp_majors:
+            tracked_majors[major] = 0
+
     other_majors = {"other": 0}
 
+    # establishes default tracked minors with specific  majors
+    if minors_are_tracked and majors_with_minors is None and \
+            tracked_minors is None:
+        tracked_minors = {"data": 0, "cyber": 0, "math": 0}
+        majors_with_minors = ["cs"]
+    other_minors = {"other/none": 0}
+
     def prompt_minor():
-        pass
+        minor_prompt = input("Enter a minor: ").lower()
+        if minor_prompt in tracked_minors.keys():
+            tracked_minors[minor_prompt] += 1
+        else:
+            other_minors["other/none"] += 1
 
     while True:
-        # prompt = input("Enter a major: ").lower()
-        prompt = "done"
-        if prompt == "done":
+        major_prompt = input("Enter a major: ").lower()
+        if major_prompt == "done":
             break
-        elif prompt == "":
+        elif major_prompt == "":
             pass
-        elif prompt in tracked_majors.keys():
-            tracked_majors[prompt] += 1
+        elif major_prompt in tracked_majors.keys():
+            tracked_majors[major_prompt] += 1
+            if major_prompt in majors_with_minors:
+                prompt_minor()
         else:
             other_majors["other"] += 1
 
     # unpack operator
     majors = {**tracked_majors, **other_majors}
+    minors = {**tracked_minors, **other_minors}
     return majors
 
 
 if __name__ == "__main__":
     welcome_message()
-    print(prompt_major())
+    these_majors = ["yolo", "bumpy"]
+    print(prompt_major(these_majors))
+    # print(prompt_major())
 
 
 
