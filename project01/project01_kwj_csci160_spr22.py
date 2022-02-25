@@ -57,24 +57,36 @@ def welcome_message():
           )
 
 
-def prompt_major(tracked_majors=None, **other_majors):
+# avoiding mutable argument https://docs.python-guide.org/writing/gotchas/
+def prompt_major(tracked_majors=None):
     if tracked_majors is None:
-        tracked_majors = {"cs": 0, "data": 0, "cyber": 0, "other": 0}
+        tracked_majors = {"cs": 0, "data": 0, "cyber": 0}
+    other_majors = {"other": 0}
 
     def prompt_minor():
         pass
 
-    prompt = input("Enter a major: ").lower()
     while True:
+        # prompt = input("Enter a major: ").lower()
+        prompt = "done"
         if prompt == "done":
             break
-        # TODO: major blank - add message to enter a major or skip
+        elif prompt == "":
+            pass
         elif prompt in tracked_majors.keys():
             tracked_majors[prompt] += 1
+        else:
+            other_majors["other"] += 1
+
+    # unpack operator
+    majors = {**tracked_majors, **other_majors}
+    return majors
 
 
 if __name__ == "__main__":
     welcome_message()
+    print(prompt_major())
+
 
 
 
