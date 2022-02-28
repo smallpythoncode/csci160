@@ -223,7 +223,6 @@ def minors_table(minor_data, course="CSCI 160", minor_legend=None,
         print("Minors of ",
               ', '.join(f"{minor}" for minor in majors_with_minors[:-1]), ", ",
               f"and {majors_with_minors[-1]} Students in ", course, sep="")
-    print(len(majors_with_minors))
 
     print(format("MINOR", "20s"), format("NUM", "3s"), format("PERCENT", "7s"))
     # try/except implemented if prompt_majors parameter
