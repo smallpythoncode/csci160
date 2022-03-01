@@ -10,5 +10,10 @@ chapters = [
     {"chapter": "12", "sections_assigned": 7, "sections_complete": 0}
 ]
 
-total_sections = 
-print(total_sections)
+sections_assigned = [i["sections_assigned"] for i in chapters]
+total_assigned = sum(sections_assigned)
+
+sections_complete = [i["sections_complete"] for i in chapters]
+total_complete = sum(sections_complete)
+
+print(f"zyBooks Progress: {total_complete / total_assigned * 100:.1f}%")
