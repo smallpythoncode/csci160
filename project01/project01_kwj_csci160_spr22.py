@@ -225,8 +225,6 @@ def minors_table(minor_data, course="CSCI 160", minor_legend=None,
               f"and {majors_with_minors[-1]} Students in ", course, sep="")
 
     print(format("MINOR", "20s"), format("NUM", "3s"), format("PERCENT", "7s"))
-    # try/except implemented if prompt_majors parameter
-    # minors_are_tracked=False
     for key, value in minor_data.items():
         if key in minor_legend.keys():
             print(f"{minor_legend[key]:20s}", f"{value:>3d}",
