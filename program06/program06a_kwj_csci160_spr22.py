@@ -2,7 +2,7 @@
 Jahnke
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
-Program 06 Part A
+Program 06, Part A
 
 Write the required functions with  proper documentation, i.e., a
 docstring with a descriptions of what it does, its parameters, and its
