@@ -51,7 +51,7 @@ def square (intValue):
     pass
 
 
-# TODO
+# TODO modulus
 def isOdd (intValue):
     """Determines if an integer is odd.
 
@@ -66,7 +66,7 @@ def isOdd (intValue):
     pass
 
 
-# TODO
+# TODO use isOdd
 def isEven(intValue):
     """Determines if an integer is even.
 
@@ -136,7 +136,9 @@ def compareTo (intValue1, intValue2):
 
 
 def main():
-    pass
+    one = 1
+    two = 2
+    ten = 10
 
 
 if __name__ == "__main__":
