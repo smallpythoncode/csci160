@@ -29,14 +29,16 @@ Developer Note:
 
     From PEP 8:
         "Function names should be lowercase, with words separated by
-        underscores as necessary to improve readability."
-    Functions within this module are written in camelCase only because
-    the assignment instructions specify as such:
+        underscores as necessary to improve readability.
+        Variable names follow the same convention as function names."
+    Function names and their parameters within this module are written
+    in camelCase with excess whitespace only because the assignment
+    instructions specify as such:
         "The function header MUST be written as specified."
+    Variables also written in camelCase for consistency's sake.
 """
 
 
-# TODO
 def square (intValue):
     """Squares an integer.
 
@@ -46,12 +48,14 @@ def square (intValue):
     :param intValue: Integer to be squared
     :type intValue: int
     :return: Square of intValue
-    :rtype: int # TODO verify
+    :rtype: int
+    :raise TypeError: String arguments are not supported
     """
-    pass
+
+    squaredInt = intValue ** 2
+    return squaredInt
 
 
-# TODO modulus
 def isOdd (intValue):
     """Determines if an integer is odd.
 
@@ -59,15 +63,19 @@ def isOdd (intValue):
     This function will return True if intValue is odd, otherwise it
     returns False.
 
-    # TODO
-    :param intValue:
-    :return:
+    :param intValue: Integer to be tested if odd
+    :type intValue: int
+    :return: A determination if intValue is odd
+    :rtype: bool
+    :raise TypeError: String arguments are not supported
     """
-    pass
+
+    if intValue % 2 == 1:
+        return True
+    return False
 
 
-# TODO use isOdd
-def isEven(intValue):
+def isEven (intValue):
     """Determines if an integer is even.
 
     Assignment:
@@ -78,14 +86,15 @@ def isEven(intValue):
     even is a lot of work. It’s the concept more than the reality of the
     code in this case.
 
-    # TODO
-    :param intValue:
-    :return:
+    :param intValue: Integer to be tested if even
+    :type intValue: int
+    :return: A determination if intValue is even
+    :rtype: bool
+    :raise TypeError: String arguments are not supported
     """
-    pass
+    return not isOdd(intValue)
 
 
-# TODO
 def sumOfOdds (intValue):
     """Determines sum of odds in range of 1 to specified integer.
 
@@ -94,11 +103,16 @@ def sumOfOdds (intValue):
     values in the range. You can assume that intValue will be positive.
     For example, sumOfOdds(5) would return 9 (1 + 3 + 5).
 
-    # TODO
-    :param intValue:
-    :return:
+    :param intValue: The value that determines the length of the range
+        of the odd numbers to be included in the summation
+    :type intValue: int
+    :return: The sum of odd numbers in the specified range
+    :rtype: int
+    :raise TypeError: String arguments are not supported
     """
-    pass
+
+    oddNums = [i for i in range(1, intValue + 1) if isOdd(i)]
+    return sum(oddNums)
 
 
 # TODO
@@ -114,8 +128,11 @@ def sumOfSquares (intValue):
     # TODO
     :param intValue:
     :return:
+    :raise TypeError: String arguments are not supported
     """
-    pass
+
+    squares = [square(i) for i in range(1, intValue + 1)]
+    return sum(squares)
 
 
 # TODO
@@ -128,9 +145,14 @@ def compareTo (intValue1, intValue2):
     intValue1 is equal to intValue2.
 
     # TODO
-    :param intValue1:
-    :param intValue2:
-    :return:
+    :param intValue1: The first integer to be compared
+    :type intValue1: int
+    :param intValue2: The second integer to be compared
+    :type intValue2: int
+    :return: -1 if intValue1 < intValue2
+        1 if intValue1 > intValue2
+        0 if intValue1 == intValue2
+    :raise TypeError: String arguments are not supported
     """
     pass
 
@@ -140,6 +162,12 @@ def main():
     two = 2
     ten = 10
 
+    print(f"{one} is odd:", isOdd(one))
+    print(f"{one} is even:", isEven(one))
+    print(f"{two} is odd:", isOdd(two))
+    print(f"{two} is even:", isEven(two))
+
+    print(sumOfSquares(6))
 
 if __name__ == "__main__":
     main()
