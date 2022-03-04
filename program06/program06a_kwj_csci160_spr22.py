@@ -136,7 +136,6 @@ def sumOfSquares (intValue):
     return sum(squares)
 
 
-# TODO
 def compareTo (intValue1, intValue2):
     """Compares two integers.
 
@@ -145,7 +144,6 @@ def compareTo (intValue1, intValue2):
     returns 1 if intValue1 is greater than intValue2, or returns 0 if
     intValue1 is equal to intValue2.
 
-    # TODO
     :param intValue1: The first integer to be compared
     :type intValue1: int
     :param intValue2: The second integer to be compared
@@ -153,12 +151,25 @@ def compareTo (intValue1, intValue2):
     :return: -1 if intValue1 < intValue2
         1 if intValue1 > intValue2
         0 if intValue1 == intValue2
+    :rtype: int
     :raise TypeError: String arguments are not supported
     """
-    pass
+
+    if intValue1 < intValue2:
+        return -1
+    elif intValue1 > intValue2:
+        return 1
+    return 0
 
 
+# TODO: test square()
+# TODO: test isOdd()
+# TODO: test isEven()
+# TODO: test sumOfOdds()
+# TODO: test sumOfSquares()
+# TODO: test compareTo()
 def main():
+    # test variables
     one = 1
     two = 2
     ten = 10
@@ -167,8 +178,9 @@ def main():
     print(f"{one} is even:", isEven(one))
     print(f"{two} is odd:", isOdd(two))
     print(f"{two} is even:", isEven(two))
+    print()
+    print(compareTo(-1, 1))
 
-    print(sumOfSquares(5))
 
 if __name__ == "__main__":
     main()
