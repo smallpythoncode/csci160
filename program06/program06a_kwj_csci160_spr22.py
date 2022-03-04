@@ -115,7 +115,6 @@ def sumOfOdds (intValue):
     return sum(oddNums)
 
 
-# TODO
 def sumOfSquares (intValue):
     """Determines sum of squares in range of 1 to specified integer.
 
@@ -125,9 +124,11 @@ def sumOfSquares (intValue):
     MUST use a loop and the square function to determine the returned
     value.
 
-    # TODO
-    :param intValue:
-    :return:
+    :param intValue: The value that determines the length of the range
+        of integers to be squared
+    :type intValue: int
+    :return: The sum of squares of integers in specified range
+    :rtype: int
     :raise TypeError: String arguments are not supported
     """
 
@@ -167,7 +168,7 @@ def main():
     print(f"{two} is odd:", isOdd(two))
     print(f"{two} is even:", isEven(two))
 
-    print(sumOfSquares(6))
+    print(sumOfSquares(5))
 
 if __name__ == "__main__":
     main()
