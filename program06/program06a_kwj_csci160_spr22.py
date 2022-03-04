@@ -162,24 +162,39 @@ def compareTo (intValue1, intValue2):
     return 0
 
 
-# TODO: test square()
-# TODO: test isOdd()
-# TODO: test isEven()
-# TODO: test sumOfOdds()
-# TODO: test sumOfSquares()
-# TODO: test compareTo()
 def main():
     # test variables
     one = 1
     two = 2
     ten = 10
 
+    print("Function being tested: square")
+    print(f"{two} squared is", square(two))
+    print(f"{ten} squared is", square(ten))
+    print()
+
+    print("Function being tested: isOdd")
     print(f"{one} is odd:", isOdd(one))
-    print(f"{one} is even:", isEven(one))
     print(f"{two} is odd:", isOdd(two))
+    print()
+
+    print("Function being tested: isEven")
+    print(f"{one} is even:", isEven(one))
     print(f"{two} is even:", isEven(two))
     print()
-    print(compareTo(-1, 1))
+
+    print("Function being tested: sumOfOdds")
+    print(f"Sum of odd integers from 1 to {ten} (inclusive):", sumOfOdds(ten))
+    print()
+
+    print("Function being tested: sumOfSquares")
+    print(f"Sum of squares from 1 to {ten} (inclusive):", sumOfSquares(ten))
+    print()
+
+    print("Function being tested: compareTo")
+    print(f"compareTo({one}, {two}) returns", compareTo(one, two))
+    print(f"compareTo({two}, {one}) returns", compareTo(two, one))
+    print(f"compareTo({one}, {one}) returns", compareTo(one, one))
 
 
 if __name__ == "__main__":
