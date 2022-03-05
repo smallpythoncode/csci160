@@ -13,17 +13,17 @@ Test all the functions in the main code.
 Functions:
 
     def square (intValue):
-        Squares an integer.
+        Squares integer intValue.
     def isOdd (intValue):
-        Determines if an integer is odd.
+        Determines if integer intValue is odd.
     def isEven(intValue):
-        Determines if an integer is even.
+        Determines if integer intValue is even.
     def sumOfOdds (intValue):
-        Determines sum of odds in range of 1 to specified integer.
+        Determines sum of odds in range of 1 to intValue (inclusive).
     def sumOfSquares (intValue):
-        Determines sum of squares in range of 1 to specified integer.
+        Determines sum of squares in range of 1 to intValue (inclusive).
     def compareTo (intValue1, intValue2):
-        Compares two integers.
+        Compares intValue 1 to intValue2.
 
 Developer Note:
 

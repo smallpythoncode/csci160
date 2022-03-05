@@ -4,7 +4,8 @@ kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Program 06, Part B
 
-
+# TODO: explain the premise
+# TODO: provide explanations of functions
 
 """
 
@@ -90,6 +91,33 @@ def draw_j(x, y, letter_color=None):
         point(start_x_j, start_y_j + 100 - y_dot)
 
 
+def draw_shadow_k(x, y, letter_color=None, offset=3):
+    if letter_color is None:
+        letter_color = "black"
+    setOutline(letter_color)
+    shadow_x_k = x + offset
+    shadow_y_k = y + offset
+    draw_k(shadow_x_k, shadow_y_k, letter_color)
+
+
+def draw_shadow_w(x, y, letter_color=None, offset=3):
+    if letter_color is None:
+        letter_color = "black"
+    setOutline(letter_color)
+    shadow_x_w = x + offset
+    shadow_y_w = y + offset
+    draw_w(shadow_x_w, shadow_y_w, letter_color)
+
+
+def draw_shadow_j(x, y, letter_color=None, offset=3):
+    if letter_color is None:
+        letter_color = "black"
+    setOutline(letter_color)
+    shadow_x_j = x + offset
+    shadow_y_j = y + offset
+    draw_j(shadow_x_j, shadow_y_j, letter_color)
+
+
 def main():
     setSize(400, 150)
     setBackground("old lace")
@@ -97,12 +125,15 @@ def main():
     current_x = 25
     current_y = 25
 
+    draw_shadow_k(current_x, current_y)
     draw_k(current_x, current_y)
     current_x += 125
 
+    draw_shadow_w(current_x, current_y)
     draw_w(current_x, current_y)
     current_x += 125
 
+    draw_shadow_j(current_x, current_y)
     draw_j(current_x, current_y)
 
 
