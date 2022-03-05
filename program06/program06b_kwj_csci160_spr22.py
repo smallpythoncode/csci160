@@ -5,8 +5,21 @@ CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Program 06, Part B
 
 # TODO: explain the premise
-# TODO: provide explanations of functions
 
+Functions:
+
+    draw_k(x, y, letter_color=None)
+        Draws letter "K"
+    draw_w(x, y, letter_color=None)
+        Draws letter "W"
+    draw_j(x, y, letter_color=None)
+        Draws letter "J"
+    draw_shadow_k(x, y, letter_color=None, offset=3)
+        Draws shadow of letter "K"
+    draw_shadow_w(x, y, letter_color=None, offset=3)
+        Draws shadow of letter "W"
+    draw_shadow_j(x, y, letter_color=None, offset=3)
+        Draws shadow of letter "J"
 """
 
 from simple_graphics.SimpleGraphics import *
@@ -133,12 +146,19 @@ def draw_j(x, y, letter_color=None):
 def draw_shadow_k(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "K" by offsetting draw_k().
 
-    # TODO
-    :param x:
-    :param y:
-    :param letter_color:
-    :param offset:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "black"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :param offset: Distance offset from letter to create shadow,
+        defaults to 3
+    :type offset: int
+    :return: None
+    :raise TypeError: x, y, offset must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
     if letter_color is None:
@@ -152,12 +172,19 @@ def draw_shadow_k(x, y, letter_color=None, offset=3):
 def draw_shadow_w(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "W" by offsetting draw_w().
 
-    # TODO
-    :param x:
-    :param y:
-    :param letter_color:
-    :param offset:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "black"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :param offset: Distance offset from letter to create shadow,
+        defaults to 3
+    :type offset: int
+    :return: None
+    :raise TypeError: x, y, offset must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
     if letter_color is None:
@@ -171,12 +198,19 @@ def draw_shadow_w(x, y, letter_color=None, offset=3):
 def draw_shadow_j(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "J" by offsetting draw_j().
 
-    # TODO
-    :param x:
-    :param y:
-    :param letter_color:
-    :param offset:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "black"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :param offset: Distance offset from letter to create shadow,
+        defaults to 3
+    :type offset: int
+    :return: None
+    :raise TypeError: x, y, offset must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
     if letter_color is None:
@@ -195,7 +229,7 @@ def main():
     current_y = 25
 
     some_color = 70, 70, 70
-    draw_shadow_k(current_x, current_y, offset="t")
+    draw_shadow_k(current_x, current_y)
     draw_k(current_x, current_y)
     current_x += 125
 

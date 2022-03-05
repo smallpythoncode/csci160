@@ -12,18 +12,19 @@ Test all the functions in the main code.
 
 Functions:
 
-    def square (intValue):
+    square (intValue)
         Squares integer intValue.
-    def isOdd (intValue):
+    isOdd (intValue)
         Determines if integer intValue is odd.
-    def isEven(intValue):
+    isEven(intValue)
         Determines if integer intValue is even.
-    def sumOfOdds (intValue):
+    sumOfOdds (intValue)
         Determines sum of odds in range of 1 to intValue (inclusive).
-    def sumOfSquares (intValue):
+    sumOfSquares (intValue)
         Determines sum of squares in range of 1 to intValue (inclusive).
-    def compareTo (intValue1, intValue2):
+    compareTo (intValue1, intValue2)
         Compares intValue 1 to intValue2.
+
 
 Developer Note:
 
