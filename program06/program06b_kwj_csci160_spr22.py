@@ -13,12 +13,18 @@ from simple_graphics.SimpleGraphics import *
 
 
 def draw_k(x, y, letter_color=None):
-    """ # TODO
+    """ Draws letter "K" using SimpleGraphics.point() in for loops.
 
-    :param x:
-    :param y:
-    :param letter_color:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "lime green"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :return: None
+    :raise TypeError: x, y must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
     if letter_color is None:
         letter_color = "lime green"
@@ -44,12 +50,18 @@ def draw_k(x, y, letter_color=None):
 
 
 def draw_w(x, y, letter_color=None):
-    """ # TODO
+    """ Draws letter "W" using SimpleGraphics.point() in for loops.
 
-    :param x:
-    :param y:
-    :param letter_color:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "peru"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :return: None
+    :raise TypeError: x, y must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
     if letter_color is None:
         letter_color = "peru"
@@ -86,12 +98,18 @@ def draw_w(x, y, letter_color=None):
 
 
 def draw_j(x, y, letter_color=None):
-    """ # TODO
+    """ Draws letter "J" using SimpleGraphics.point() in for loops.
 
-    :param x:
-    :param y:
-    :param letter_color:
-    :return:
+    :param x: top right horizontal position of letter on canvas
+    :type x: int
+    :param y: top right vertical position of letter on canvas
+    :type y: int
+    :param letter_color: Color of letter, defaults to "slate blue"
+    :type letter_color: str (https://trinket.io/docs/colors)
+    :return: None
+    :raise TypeError: x, y must be integers
+
+    # FIXME: How can r, g, b values be used for letter_color? (type)
     """
     if letter_color is None:
         letter_color = "slate blue"
@@ -113,8 +131,9 @@ def draw_j(x, y, letter_color=None):
 
 
 def draw_shadow_k(x, y, letter_color=None, offset=3):
-    """ # TODO
+    """Draws a shadow for letter "K" by offsetting draw_k().
 
+    # TODO
     :param x:
     :param y:
     :param letter_color:
@@ -131,8 +150,9 @@ def draw_shadow_k(x, y, letter_color=None, offset=3):
 
 
 def draw_shadow_w(x, y, letter_color=None, offset=3):
-    """ # TODO
+    """Draws a shadow for letter "W" by offsetting draw_w().
 
+    # TODO
     :param x:
     :param y:
     :param letter_color:
@@ -149,8 +169,9 @@ def draw_shadow_w(x, y, letter_color=None, offset=3):
 
 
 def draw_shadow_j(x, y, letter_color=None, offset=3):
-    """ # TODO
+    """Draws a shadow for letter "J" by offsetting draw_j().
 
+    # TODO
     :param x:
     :param y:
     :param letter_color:
@@ -173,7 +194,8 @@ def main():
     current_x = 25
     current_y = 25
 
-    draw_shadow_k(current_x, current_y)
+    some_color = 70, 70, 70
+    draw_shadow_k(current_x, current_y, offset="t")
     draw_k(current_x, current_y)
     current_x += 125
 
