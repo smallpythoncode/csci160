@@ -13,6 +13,13 @@ from simple_graphics.SimpleGraphics import *
 
 
 def draw_k(x, y, letter_color=None):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :return:
+    """
     if letter_color is None:
         letter_color = "lime green"
     setOutline(letter_color)
@@ -37,6 +44,13 @@ def draw_k(x, y, letter_color=None):
 
 
 def draw_w(x, y, letter_color=None):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :return:
+    """
     if letter_color is None:
         letter_color = "peru"
     setOutline(letter_color)
@@ -72,6 +86,13 @@ def draw_w(x, y, letter_color=None):
 
 
 def draw_j(x, y, letter_color=None):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :return:
+    """
     if letter_color is None:
         letter_color = "slate blue"
     setOutline(letter_color)
@@ -92,6 +113,15 @@ def draw_j(x, y, letter_color=None):
 
 
 def draw_shadow_k(x, y, letter_color=None, offset=3):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :param offset:
+    :return:
+    """
+
     if letter_color is None:
         letter_color = "black"
     setOutline(letter_color)
@@ -101,6 +131,15 @@ def draw_shadow_k(x, y, letter_color=None, offset=3):
 
 
 def draw_shadow_w(x, y, letter_color=None, offset=3):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :param offset:
+    :return:
+    """
+
     if letter_color is None:
         letter_color = "black"
     setOutline(letter_color)
@@ -110,6 +149,15 @@ def draw_shadow_w(x, y, letter_color=None, offset=3):
 
 
 def draw_shadow_j(x, y, letter_color=None, offset=3):
+    """ # TODO
+
+    :param x:
+    :param y:
+    :param letter_color:
+    :param offset:
+    :return:
+    """
+
     if letter_color is None:
         letter_color = "black"
     setOutline(letter_color)
