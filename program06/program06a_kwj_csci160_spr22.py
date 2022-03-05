@@ -1,5 +1,5 @@
 """
-Jahnke
+Jahnke, Student ID: 0808831
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Program 06, Part A
