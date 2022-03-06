@@ -24,7 +24,7 @@ Functions:
 
 from simple_graphics.SimpleGraphics import *
 
-
+# TODO change default from None to string
 def draw_k(x, y, letter_color=None):
     """ Draws letter "K" using SimpleGraphics.point() in for loops.
 
@@ -61,7 +61,7 @@ def draw_k(x, y, letter_color=None):
             point(line3_x_k + x_dot, half_y_k - y_dot)
         line3_x_k += 2
 
-
+# TODO change default from None to string
 def draw_w(x, y, letter_color=None):
     """ Draws letter "W" using SimpleGraphics.point() in for loops.
 
@@ -109,7 +109,7 @@ def draw_w(x, y, letter_color=None):
             point(q3_x_w + x_dot, line4_y_w - y_dot)
         line4_y_w -= 4
 
-
+# TODO change default from None to string
 def draw_j(x, y, letter_color=None):
     """ Draws letter "J" using SimpleGraphics.point() in for loops.
 
@@ -142,7 +142,7 @@ def draw_j(x, y, letter_color=None):
     for y_dot in range(0, 25):
         point(start_x_j, start_y_j + 100 - y_dot)
 
-
+# TODO change default from None to string
 def draw_shadow_k(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "K" by offsetting draw_k().
 
@@ -168,7 +168,7 @@ def draw_shadow_k(x, y, letter_color=None, offset=3):
     shadow_y_k = y + offset
     draw_k(shadow_x_k, shadow_y_k, letter_color)
 
-
+# TODO change default from None to string
 def draw_shadow_w(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "W" by offsetting draw_w().
 
@@ -194,7 +194,7 @@ def draw_shadow_w(x, y, letter_color=None, offset=3):
     shadow_y_w = y + offset
     draw_w(shadow_x_w, shadow_y_w, letter_color)
 
-
+# TODO change default from None to string
 def draw_shadow_j(x, y, letter_color=None, offset=3):
     """Draws a shadow for letter "J" by offsetting draw_j().
 
