@@ -4,7 +4,9 @@ kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Program 06, Part B
 
-# TODO: explain the premise
+Create functions to draw three letters and functions to draw a shadow
+for each of the three letters. The shadow functions must utilize the
+respective letter functions.
 
 Functions:
 
@@ -24,8 +26,8 @@ Functions:
 
 from simple_graphics.SimpleGraphics import *
 
-# TODO change default from None to string
-def draw_k(x, y, letter_color=None):
+
+def draw_k(x, y, letter_color="lime green"):
     """ Draws letter "K" using SimpleGraphics.point() in for loops.
 
     :param x: top right horizontal position of letter on canvas
@@ -39,8 +41,7 @@ def draw_k(x, y, letter_color=None):
 
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
-    if letter_color is None:
-        letter_color = "lime green"
+
     setOutline(letter_color)
     start_x_k = x
     start_y_k = y
@@ -61,8 +62,8 @@ def draw_k(x, y, letter_color=None):
             point(line3_x_k + x_dot, half_y_k - y_dot)
         line3_x_k += 2
 
-# TODO change default from None to string
-def draw_w(x, y, letter_color=None):
+
+def draw_w(x, y, letter_color="peru"):
     """ Draws letter "W" using SimpleGraphics.point() in for loops.
 
     :param x: top right horizontal position of letter on canvas
@@ -76,8 +77,7 @@ def draw_w(x, y, letter_color=None):
 
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
-    if letter_color is None:
-        letter_color = "peru"
+
     setOutline(letter_color)
     start_x_w = x
     start_y_w = y
@@ -109,8 +109,8 @@ def draw_w(x, y, letter_color=None):
             point(q3_x_w + x_dot, line4_y_w - y_dot)
         line4_y_w -= 4
 
-# TODO change default from None to string
-def draw_j(x, y, letter_color=None):
+
+def draw_j(x, y, letter_color="slate blue"):
     """ Draws letter "J" using SimpleGraphics.point() in for loops.
 
     :param x: top right horizontal position of letter on canvas
@@ -124,8 +124,7 @@ def draw_j(x, y, letter_color=None):
 
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
-    if letter_color is None:
-        letter_color = "slate blue"
+
     setOutline(letter_color)
     start_x_j = x
     start_y_j = y
@@ -142,8 +141,8 @@ def draw_j(x, y, letter_color=None):
     for y_dot in range(0, 25):
         point(start_x_j, start_y_j + 100 - y_dot)
 
-# TODO change default from None to string
-def draw_shadow_k(x, y, letter_color=None, offset=3):
+
+def draw_shadow_k(x, y, letter_color="black", offset=3):
     """Draws a shadow for letter "K" by offsetting draw_k().
 
     :param x: top right horizontal position of letter on canvas
@@ -161,15 +160,13 @@ def draw_shadow_k(x, y, letter_color=None, offset=3):
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
-    if letter_color is None:
-        letter_color = "black"
     setOutline(letter_color)
     shadow_x_k = x + offset
     shadow_y_k = y + offset
     draw_k(shadow_x_k, shadow_y_k, letter_color)
 
-# TODO change default from None to string
-def draw_shadow_w(x, y, letter_color=None, offset=3):
+
+def draw_shadow_w(x, y, letter_color="black", offset=3):
     """Draws a shadow for letter "W" by offsetting draw_w().
 
     :param x: top right horizontal position of letter on canvas
@@ -187,15 +184,13 @@ def draw_shadow_w(x, y, letter_color=None, offset=3):
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
-    if letter_color is None:
-        letter_color = "black"
     setOutline(letter_color)
     shadow_x_w = x + offset
     shadow_y_w = y + offset
     draw_w(shadow_x_w, shadow_y_w, letter_color)
 
-# TODO change default from None to string
-def draw_shadow_j(x, y, letter_color=None, offset=3):
+
+def draw_shadow_j(x, y, letter_color="black", offset=3):
     """Draws a shadow for letter "J" by offsetting draw_j().
 
     :param x: top right horizontal position of letter on canvas
@@ -213,8 +208,6 @@ def draw_shadow_j(x, y, letter_color=None, offset=3):
     # FIXME: How can r, g, b values be used for letter_color? (type)
     """
 
-    if letter_color is None:
-        letter_color = "black"
     setOutline(letter_color)
     shadow_x_j = x + offset
     shadow_y_j = y + offset
