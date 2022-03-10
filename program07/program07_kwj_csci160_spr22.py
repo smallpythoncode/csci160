@@ -13,14 +13,17 @@ Functions:
         # TODO: summary
     # TODO: List functions
 
-Developer Note:
-
-    csv module may simplify implementation by virtue of delimiters
-    rather than using index() method
 
 """
 
+from os.path import isfile
+import datetime
 
+
+# TODO: TUPLE: trans_type, date, amount = something.split(",")
+
+# TODO: strip method and split method
+# FIXME: use default value instead?
 def _read_data():
     """ # TODO: explain purpose of reading test data file
     # checking_account_data.txt
