@@ -20,18 +20,36 @@ from os.path import isfile
 import datetime
 
 
+def get_data_file():
+    while True:
+        df = input("Enter name of checking account data file: ")
+        if df == "exit":
+            raise SystemExit
+        elif not isfile(df):
+            print("\tFile \"" + df + "\" does not exist.")
+            print("\tEnsure correct spelling and file extensions.")
+            print("\tEnter \"exit\" to exit program.")
+        else:
+            break
+
+    return df
+
+
+
+
 # TODO: TUPLE: trans_type, date, amount = something.split(",")
 
 # TODO: strip method and split method
-# FIXME: use default value instead?
-def _read_data():
-    """ # TODO: explain purpose of reading test data file
-    # checking_account_data.txt
 
-    :return:
-    """
 
-    pass
+def display_data(data_file):
+    with open(data_file) as reader:
+        for line in reader:
+            trans_type, date, amount = line.split(",")
+            print(trans_type, date, amount, end="")
+
+
+
 
 
 def transaction_type():
@@ -39,7 +57,10 @@ def transaction_type():
 
 
 def main():
-    transaction_type()
+    df = "checking_account_data.txt"
+    # df = get_data_file()
+
+    display_data(df)
 
 
 if __name__ == "__main__":
