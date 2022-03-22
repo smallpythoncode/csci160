@@ -225,10 +225,10 @@ def figure_format(figure):
 
 
 def main():
-    # df = get_data_file()
-    df = "checking_account_data.txt"
+    df = get_data_file()
     df_is_valid = data_verification(df)
     if df_is_valid:
+        print()
         print(display_balance_today())
         print()
         with open(df) as reader:
