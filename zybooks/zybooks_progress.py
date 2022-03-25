@@ -6,7 +6,7 @@ chapters = [
     {"chapter": "5", "sections_assigned": 13, "sections_complete": 13},
     {"chapter": "6", "sections_assigned": 17, "sections_complete": 17},
     {"chapter": "7", "sections_assigned": 4, "sections_complete": 4},
-    {"chapter": "8", "sections_assigned": 18, "sections_complete": 9},
+    {"chapter": "8", "sections_assigned": 18, "sections_complete": 17},
     {"chapter": "12", "sections_assigned": 7, "sections_complete": 0}
 ]
 
