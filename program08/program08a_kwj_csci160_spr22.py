@@ -10,13 +10,19 @@ Program 08, Part 1
 
 Functions:
 
-
-
+    prompt_floats()
+        Prompts user for floats to be added to a list.
+    prompt_txt_file_name():
+        Prompts user for desired name of .txt file.
+    write_list_to_file(target_list, file):
+        Writes elements of a list to a file, one element to a line.
 """
+
+from os.path import isfile
 
 
 def prompt_floats():
-    """Prompts user for floats to be added to a list "floats".
+    """Prompts user for floats to be added to a list.
 
     :return: A list containing the floats entered.
     :rtype: list
@@ -32,39 +38,64 @@ def prompt_floats():
             floats.append(num)
             prompt = input("Number: ")
         except ValueError:
-            print("INVALID DATA TYPE")
+            print("Invalid data type. Entry rejected."
+                  "")
             prompt = input("Number: ")
     return floats
 
 
-def write_list_to_file(target_list):
-    """Writes elements of a list to a new file, one element to a line.
+def prompt_txt_file_name():
+    """Prompts user for desired name of .txt file.
 
-    :param target_list: The list of integers to be written line-by-line
-    :type target_list: list
-    :return: None
+    Currently does not check for other file types.
+
+    :return: The name of a .txt file
+    :rtype: str
     """
     while True:
-        # if necessary, add doubles to list and scan w/ for loop
-        double_extension = ".txt"
+        # if necessary, add extensions to list and check containment
+        extension = ".txt"
         file_name = input("Enter desired file name. Do not add a file "
                           "extension.\nFile name: ")
-        if double_extension not in file_name:
+        if extension not in file_name:
             file_name = file_name + ".txt"
             break
 
-    with open(file_name, "w") as file:
-        for value in target_list:
+    return file_name
 
-            file.write(str(value) + "\n")
+
+def write_list_to_file(target_list, file):
+    """Writes elements of a list to a file, one element to a line.
+
+    If the file already exists, user is asked if file is to be
+    overwritten.
+
+    :param target_list: The list of integers to be written line-by-line
+    :type target_list: list
+    :param file: The file to be written to
+    :type file: str
+    :return: None
+    """
+    if isfile(file):
+        yes = ["y", "yes"]
+        no = ["n", "no"]
+        print(f"{file} already exists.")
+        while True:
+            overwrite = input("Do you wish to ovewrite? (y/n): ").lower()
+            if overwrite in no:
+                break
+            elif overwrite in yes:
+                with open(file, "w") as f:
+                    for value in target_list:
+                        f.write(str(value) + "\n")
+                break
 
 
 def main():
-    # floats = prompt_floats()
-    # print(floats)
-    deez = [1, 2, 3]
-    write_list_to_file(deez)
-
+    floats = prompt_floats()
+    print()
+    file = prompt_txt_file_name()
+    write_list_to_file(floats, file)
 
 
 if __name__ == "__main__":
