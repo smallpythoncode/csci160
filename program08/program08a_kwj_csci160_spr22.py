@@ -24,6 +24,8 @@ from os.path import isfile
 def prompt_floats():
     """Prompts user for floats to be added to a list.
 
+    Prompting ends when "-1" is entered.
+
     :return: A list containing the floats entered.
     :rtype: list
     :raise ValueError: Only floats or ints may be entered
@@ -79,6 +81,7 @@ def write_list_to_file(target_list, file):
     if isfile(file):
         yes = ["y", "yes"]
         no = ["n", "no"]
+        print()
         print(f"{file} already exists.")
         while True:
             overwrite = input("Do you wish to ovewrite? (y/n): ").lower()
@@ -89,6 +92,10 @@ def write_list_to_file(target_list, file):
                     for value in target_list:
                         f.write(str(value) + "\n")
                 break
+    else:
+        with open(file, "w") as f:
+            for value in target_list:
+                f.write(str(value) + "\n")
 
 
 def main():
