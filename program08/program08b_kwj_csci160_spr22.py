@@ -1,24 +1,27 @@
 """Jahnke, Student ID: 0808831
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
-Program XX, Part X
+Program 08, Part 2
 
-# TODO description
+Write the required functions and print the return values in the main
+function. Avoid built-in methods that perform the same task.
 
-Functions:
+Required Functions:
 
-    # TODO write the functions
-    ---REQUIRED---
     fillListFromFile (fileName):
         Reads a file and creates a list of values from that file.
     findMaxValue (theList):
         Finds the maximum value in a list.
     findMinValue (theList):
         Finds the minimum value in a list.
-
-
-    ---NOT REQUIRED---
-
+    calcRange (theList):
+        Calculates the range of a list of values.
+    calcAverage (theList):
+        Calculates the average of a list of values.
+    calcGeometricMean (theList):
+        Calculates the geometric mean of a list of values.
+    standardDeviation (theList):
+        Calculates the standard deviation for a list of values.
 """
 
 
@@ -43,7 +46,7 @@ def findMaxValue (theList):
 
     :param theList: The list in which to find a maximum
     :type theList: list
-    :return: The maximum value
+    :return: The maximum value in theList
     :rtype: float or int
     """
     maxValue = ""
@@ -62,7 +65,7 @@ def findMinValue (theList):
 
     :param theList: The list in which to find a minimum
     :type theList: list
-    :return: The minimum value
+    :return: The minimum value in theList
     :rtype: float or int
     """
     minValue = ""
@@ -76,46 +79,87 @@ def findMinValue (theList):
     return minValue
 
 
-# TODO
 def calcRange (theList):
-    pass
+    """Calculates the range of a list of values.
+
+    :param theList: The list in which to find the range
+    :type theList: list
+    :return: The range of a theList (max - min)
+    :rtype: float or int
+    """
+    return findMaxValue(theList) - findMinValue(theList)
 
 
-# TODO
 def calcAverage (theList):
-    pass
+    """Calculates the average of a list of values.
+
+    :param theList: The list of which the average is to be found.
+    :type theList: list
+    :return: The average of the values of theList
+    :rtype: float
+    """
+    sum = 0
+    numValues = 0
+    for value in theList:
+        sum += value
+        numValues += 1
+
+    return sum / numValues
 
 
-# TODO
 def calcGeometricMean (theList):
-    pass
+    """Calculates the geometric mean of a list of values.
+
+    :param theList: The list of which the geometric mean
+    :type theList: list
+    :return: The geometric mean of the values of theList
+    :rtype: float
+    """
+    product = 1
+    root = 0
+    for value in theList:
+        product *= value
+        root += 1
+
+    return product ** (1 / root)
 
 
-# TODO
 def standardDeviation (theList):
-    pass
+    """Calculates the standard deviation for a list of values.
+
+    Utilizes the population formula for standard deviation.
+
+    :param theList: The list of which to find the standard deviation
+    :type theList: list
+    :return: The standard deviation of theList
+    :rtype: float
+    """
+    average = calcAverage(theList)
+    squaredDifferencesSum = 0
+    # not sample
+    population = 0
+    for value in theList:
+        value = (value - average) ** 2
+        squaredDifferencesSum += value
+        population += 1
+
+    return (squaredDifferencesSum / population) ** (1 / 2)
 
 
-# TODO
 def main():
     # Instructions explicitly state to ask for file name in main().
     # Ideally, a function would be created for this, one that uses the isfile
     # method from os.path package
-    # TODO remove file used for testing
-    # file = input("Enter the file name: )
-    file = "values.txt"
-
+    file = input("Enter the file name: ")
     valueList = fillListFromFile(file)
-    print(valueList)
+
+    print()
     print("Maximum value:", findMaxValue(valueList))
     print("Minimum value:", findMinValue(valueList))
-
-
-
-
-
-
-
+    print("Range:", calcRange(valueList))
+    print("Average:", calcAverage(valueList))
+    print("Geometric mean:", calcGeometricMean(valueList))
+    print("Standard deviation:", standardDeviation(valueList))
 
 
 if __name__ == "__main__":
