@@ -7,7 +7,7 @@ chapters = [
     {"chapter": "6", "sections_assigned": 17, "sections_complete": 17},
     {"chapter": "7", "sections_assigned": 4, "sections_complete": 4},
     {"chapter": "8", "sections_assigned": 18, "sections_complete": 18},
-    {"chapter": "12", "sections_assigned": 7, "sections_complete": 0}
+    {"chapter": "12", "sections_assigned": 7, "sections_complete": 7}
 ]
 
 sections_assigned = [i["sections_assigned"] for i in chapters]
