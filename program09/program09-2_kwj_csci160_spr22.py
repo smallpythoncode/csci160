@@ -3,25 +3,31 @@ kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Program 09, Part 2
 
-# TODO - add description
+Create a module with the following required functions for list manipulation
+and processing and for use with SimpleGraphics:
 
 Required Functions:
 
     fillListFromFile (fileName):
         Reads a file and returns a list of values from that file.
     adjustList (theList):
-        Modifies values in a list to ensure they are in range 0 to 100.
+        Copies thelist, modifies values to range 0 to 100.
     calcAverage (theList):
         Calculates the average of a list of values.
     getColor (value)
-        # TODO - add description
+        Returns a color name dependent on value.
     indexOfMaxValue (theList)
-        # TODO - add description
+        Finds the maximum value of theList.
     drawGraph (theList)
-        # TODO - add description
+        Draws a bar graph for the values in theList and the average.
+
+Discretionary Functions:
+
+    printMaxInfo (maxInfo):
+        Prints information about maximum values.
 """
 
-# from simple_graphics.SimpleGraphics import *
+from simple_graphics.SimpleGraphics import *
 
 
 def fillListFromFile (fileName):
@@ -44,7 +50,7 @@ def fillListFromFile (fileName):
 
 
 def adjustList (theList):
-    """Modifies values in a list to ensure they are in range 0 to 100.
+    """Copies thelist, modifies values to range 0 to 100.
 
     Designed to handle integer values. Will convert floats.
 
@@ -103,25 +109,93 @@ def getColor (value):
         return "darkblue"
 
 
-# TODO - Refer to findMaxValue() from program08
 def indexOfMaxValue (theList):
-    pass
+    """Finds the maximum value of theList.
+
+    :param theList: The list in which to find the maximum
+    :type theList: list
+    :return: The maximum value and its indexes w/in the list
+    :rtype: tuple
+    """
+    max_value = theList[0]
+    max_index = []
+
+    for i in range(len(theList)):
+        if theList[i] == max_value:
+            max_index.append(i)
+        elif theList[i] > max_value:
+            max_index.clear()
+            max_value = theList[i]
+            max_index.append(i)
+
+    return max_value, max_index
 
 
-# TODO
 def drawGraph (theList):
-    pass
+    """Draws a bar graph for the values in theList and the average.
+
+    :param theList: The values to be displayed
+    :type theList: list
+    :rtype: None
+    """
+    setWindowTitle("There's a snake in my boot.")
+    setSize(700, 500)
+    setOutline("black")
+    setBackground("lightgray")
+    setFill("white")
+    graphLeft = 50
+    graphTop = 50
+    graphWidth = 600
+    graphHeight = 400
+    rect(graphLeft, graphTop, graphWidth, graphHeight)
+
+    barWidth = graphWidth / len(theList)
+    barStart = graphLeft
+    for bar in theList:
+        setFill(getColor(bar))
+        barHeight = graphHeight * (bar / 100)
+        barTop = graphTop + (1 - barHeight) + 400
+        rect(barStart, barTop, barWidth, barHeight)
+        barStart += barWidth
+
+    setLineWidth(5)
+    averageLine = graphTop + (graphHeight * (1 - (calcAverage(theList) / 100)))
+    line(graphLeft, averageLine, graphLeft + graphWidth, averageLine)
+
+    numPosition = graphLeft + (barWidth / 2) - 5
+    for i in range(len(theList)):
+        showText(numPosition, 465, i + 1)
+        numPosition += barWidth
 
 
-# TODO - finalize
+def printMaxInfo (maxInfo):
+    """Prints information about maximum values.
+
+    :param maxInfo:
+        index0 = the maximum value
+        index1 = list of indexes at which the maximum appears
+        (maxValue, [maxValue, at, index, list])
+    :type maxInfo: tuple
+    :rtype: None
+    """
+    print("Maximum value:", str(maxInfo[0]))
+    print(f"Index(es) of max value: ", end="")
+    for value in maxInfo[1][:-1]:
+        print(value, end=", ")
+    print(maxInfo[1][-1])
+
+
 def main():
-    # file = input("Enter the file name: ")
-    file = "values09.txt"
+    file = input("Enter the file name: ")
     originalList = fillListFromFile(file)
     adjustedList = adjustList(originalList)
-    # TODO - delete print statments
-    print(originalList)
-    print(adjustedList)
+    print("Original list:", originalList)
+    print("Adjusted list:", adjustedList)
+    print("Average of original values:", calcAverage(originalList))
+    print("Average of adjusted values:", calcAverage(adjustedList))
+    maxValueInfo = indexOfMaxValue(adjustedList)
+    printMaxInfo(maxValueInfo)
+    drawGraph(adjustedList)
 
 
 if __name__ == "__main__":
