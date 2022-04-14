@@ -19,17 +19,48 @@ Functions:
     # TODO
 """
 
-# TODO
-"""check that the string is in proper format"""
-def classStringValidator ():
 
-    pass
+def classStringValidator (className):
+    """# TODO
+
+    :param str className: The name of the class to be validated
+    :except AttributeError: className must be string
+    :return: The name of class if valid, else None
+    :rtype: str or None
+    """
+    try:
+        className = className.upper()
+    except AttributeError:
+        return None
+    # min example: "EE 101"  --> len == 6
+    # max example: "CSCI 493HON" --> len == 11
+    if len (className) in range (6, 12):
+        departmentClassNumberSplit = className.split ()
+        if len (departmentClassNumberSplit) == 2:
+            department = departmentClassNumberSplit[0]
+            classNumber = departmentClassNumberSplit[1]
+            #
+            if (
+                # department could be 2 to 4 chars
+                # examples: EE, FIN, CSCI
+                len (department) in range (2, 5) and
+                department.isalpha () and
+                len (classNumber) in range (3, 7) and
+                classNumber[:3].isnumeric ()
+            ):
+                # account for honor and lab courses
+                if (
+                    len (classNumber) == 3 or
+                    classNumber[3:] == "HON" or
+                    classNumber[3:] == "L"
+                ):
+                    return className
 
 
 # TODO
 def creditsValidator ():
     """check that the value for credits can be converted
-    to an in and that the value is between 0 and 4 inclusive"""
+    to an in and that the value is between 1 and 4 inclusive"""
     """fdsaf
     
     :param:
@@ -43,22 +74,7 @@ def creditsValidator ():
         return None
 
 
-def TINKERINGclassStringValidator (className):
-    if len(className) != 8:
-        return None
-    else:
-        singleSpacePresent = className.split()
-        if len(singleSpacePresent[0]) and len(singleSpacePresent[3]):
-            pass
 
-
-    """convert first 3 chars in number to int
-    last 1 to 3 to "L" or "HON" """
-
-    """DEPARTMENT NAME either 2 (EE), 3 (FIN) or 4 (CSCI) characters."""
-
-
-    x = "fdsaf3da"
 
 
 
