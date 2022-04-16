@@ -16,15 +16,21 @@ value.
 
 Functions:
 
-    classStringValidator (className)
+    classNameValidator (className)
         - Checks if className is a valid class name.
-    # TODO
+    creditsValidator (creditsValue)
+        - Check that creditsValue is valid number of credits.
+    promptFileNameWrite ()
+        - Prompts for desired text file name for use in write mode.
+    promptFileNameRead ()
+        - Prompts for desired text file name for use in read mode.
+
 """
 
 from os.path import isfile
 
 
-def classStringValidator (className):
+def classNameValidator (className):
     """Checks if className is a valid class name.
 
     Format of string: DEPT NUM
@@ -32,7 +38,7 @@ def classStringValidator (className):
         - EE 101
         - FIN 310
         - CSCI 160
-    Allows for lab and honors classes. Examples
+    Allows for lab and honors classes. Examples:
         - BIOL 150L
         - CSCI 493HON
 
@@ -70,63 +76,34 @@ def classStringValidator (className):
                     return className
 
 
-# TODO
-def creditsValidator ():
-    """check that the value for credits can be converted
-    to an in and that the value is between 1 and 4 inclusive"""
-    """fdsaf
+def creditsValidator (creditsValue):
+    """Check that creditsValue is valid number of credits.
+
+    Credit range: 1 <= creditsValue <= 4
     
-    :param:
+    :param int creditsValue: The number of credits to check
+    :except TypeError: creditsValue should be an int
+    :return: The number of credits if valid, else None
+    :rtype: int or None
     
     """
-    # TODO
     try:
-        pass
-    # TODO for function that uses "if variable is not None"
-    except ValueError:
+        if 1 <= creditsValue <= 4:
+            return creditsValue
+    except TypeError:
         return None
 
 
-# TODO modify
-def promptTempsDataFileName ():
-    # TODO modify
-    """Prompts user for name of data file containing temperature data.
-
-    Must include file extension, e.g., .txt.
-    Data format contract:
-        - Line 1: "Month Year", e.g., "March 2022"
-        - Line 2 - Line n. 'Day,HighTemp,LowTemp', e.g., "10,69,30"
-
-    .. warning::
-        Excessive blank lines within (> 0) or at end of data (> 1) may
-        cause exceptions if data file is argument of certain functions.
-
-    :return: The temperature data file name if file exists
-    :rtype: str or None
-    """
-    while True:
-        fileName = input(
-            "Enter name of temperature data file (include extension): ")
-        if isfile(fileName):
-            return fileName
-        elif fileName == "":
-            break
-        else:
-            print(f"{fileName} does not exist.\n"
-                  "Try entry again or press 'Enter'.")
-
-
-# TODO modify
 def promptFileNameWrite ():
-    # TODO modify
-    """Prompts user for desired name of text file for use in writing modes.
+    """Prompts for desired text file name for use in write mode.
 
-    Designed to use in conjunction with writing of files, thus, checks if
-    text file of same name already exists to circumvent undesired
-    overwriting.
+    Designed to use in conjunction with writing of files, thus, checks
+    if text file of same name already exists to circumvent undesired
+    overwriting. Returns name of text file to be (over)written or None
+    if overwrite denied.
 
     :return: The name of a .txt file
-    :rtype: str
+    :rtype: str or None
     """
     while True:
         fileName = input("Enter desired text file name. Do not add a file "
@@ -144,16 +121,15 @@ def promptFileNameWrite ():
                     break
 
 
-
-
-# TODO modify
 def promptFileNameRead ():
-    # TODO modify
-    """Prompts user for desired name of text file for use in read mode.
+    """Prompts for desired text file name for use in read mode.
 
-    Designed to use in conjunction with writing of files, thus, checks if
-    text file of same name already exists to circumvent undesired
-    overwriting.
+    Designed to use in conjunction with reading of files. Returns name
+    of text file if it exists, otherwise None.
+
+    .. note::
+        Does not contribute to Program 10-1 assignment; written for
+        personal use.
 
     :return: The name of a .txt file
     :rtype: str
@@ -161,28 +137,83 @@ def promptFileNameRead ():
     while True:
         fileName = input("Enter desired text file name. Do not add a file "
                          "extension.\nFile name: ")
-        fileName = fileName + ".txt"
-        if isfile(fileName):
-            return fileName
-        # FIXME for reading
+        if fileName == "":
+            break
         else:
-            print(fileName, "already exists. Do wish to overwrite?")
-            while True:
-                overwritePrompt = input("y/n: ").lower()
-                if overwritePrompt in ["y", "yes"]:
-                    return fileName
-                elif overwritePrompt in ["n", "no"]:
-                    break
+            fileName = fileName + ".txt"
+            if isfile(fileName):
+                return fileName
+            else:
+                print(fileName, "does not exist.\n"
+                                "Input another file name or press "
+                                "\"Enter\" to exit.")
 
 
+def main ():
+    classesAndCredits = {}
+    print ("Enter a series of class names and credits for each class.\n"
+           "Class names must be in \"DEPT NUM(L/HON)\" format. Examples:\n\t"
+           "CSCI 160, EE 101, BIOL 150L\n"
+           "The number of credits must be an integer between 1 and 4"
+           "(inclusive)\n"
+           "To exit, press \"ENTER\" during class name prompt.\n")
 
+    while True:
+        className = input("Class name: ").strip ()
+        if className == "":
+            break
+        else:
+            className = classNameValidator (className)
+            if className is None:
+                print ("That is not a valid class name.")
+            elif className in classesAndCredits:
+                while True:
+                    overwrite = input (f"Data already entered for {className}."
+                                       f" Overwrite? (y/n): ").lower ()
+                    if overwrite in ["y", "yes"]:
+                        while True:
+                            numCredits = int (
+                                input(f"{className} credits: ").strip ()
+                            )
+                            numCredits = creditsValidator (numCredits)
+                            if numCredits is None:
+                                print (f"{numCredits} is not a valid number "
+                                       f"of credits")
+                            else:
+                                classesAndCredits[className] = numCredits
+                                print ()
+                                break
+                        break
+                    elif overwrite in ["n", "no"]:
+                        break
+                    else:
+                        print (f"{overwrite} is not a valid response.")
+            else:
+                while True:
+                    numCredits = int (
+                                input(f"{className} credits: ").strip ()
+                    )
+                    numCredits = creditsValidator (numCredits)
+                    if numCredits is None:
+                        print (f"{numCredits} is not a valid number of "
+                              f"credits")
+                    else:
+                        classesAndCredits[className] = numCredits
+                        print()
+                        break
 
+    print ()
+    print ("The data will be written to a text file.")
+    while True:
+        fileName = promptFileNameWrite ()
+        if fileName is not None:
+            break
 
-# if numCredits not in range (0, 5):
-    # prompt "are you sure?"
+    with open(fileName, "w") as f:
+        for i in classesAndCredits:
+            f.write (f"{i}\t{classesAndCredits[i]}\n")
 
-def main():
-    print(promptFileName())
+    print (f"Data writing complete. Check working directory for {fileName}")
 
 
 if __name__ == "__main__":
