@@ -22,9 +22,6 @@ Functions:
         - Check that creditsValue is valid number of credits.
     promptFileNameWrite ()
         - Prompts for desired text file name for use in write mode.
-    promptFileNameRead ()
-        - Prompts for desired text file name for use in read mode.
-
 """
 
 from os.path import isfile
@@ -119,34 +116,6 @@ def promptFileNameWrite ():
                     return fileName
                 elif overwritePrompt in ["n", "no"]:
                     break
-
-
-def promptFileNameRead ():
-    """Prompts for desired text file name for use in read mode.
-
-    Designed to use in conjunction with reading of files. Returns name
-    of text file if it exists, otherwise None.
-
-    .. note::
-        Does not contribute to Program 10-1 assignment; written for
-        personal use.
-
-    :return: The name of a .txt file
-    :rtype: str
-    """
-    while True:
-        fileName = input("Enter desired text file name. Do not add a file "
-                         "extension.\nFile name: ")
-        if fileName == "":
-            break
-        else:
-            fileName = fileName + ".txt"
-            if isfile(fileName):
-                return fileName
-            else:
-                print(fileName, "does not exist.\n"
-                                "Input another file name or press "
-                                "\"Enter\" to exit.")
 
 
 def main ():
