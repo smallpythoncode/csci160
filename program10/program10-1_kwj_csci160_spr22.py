@@ -31,6 +31,7 @@ def classNameValidator (className):
     """Checks if className is a valid class name.
 
     Format of string: DEPT NUM
+
     Allows for department names of 2-4 characters. Examples:
         - EE 101
         - FIN 310
@@ -38,6 +39,10 @@ def classNameValidator (className):
     Allows for lab and honors classes. Examples:
         - BIOL 150L
         - CSCI 493HON
+
+    .. warning::
+        Accounts for course MATH 98 but does NOT account for any other
+        remedial courses (class numbers <100).
 
     :param str className: The name of the class to be validated
     :except AttributeError: className must be string
@@ -48,9 +53,12 @@ def classNameValidator (className):
         className = className.upper()
     except AttributeError:
         return None
+    if className == "MATH 98":
+        return className
+
     # min example: "EE 101"  --> len == 6
     # max example: "CSCI 493HON" --> len == 11
-    if len (className) in range (6, 12):
+    elif len (className) in range (6, 12):
         departmentClassNumberSplit = className.split ()
         if len (departmentClassNumberSplit) == 2:
             department = departmentClassNumberSplit[0]

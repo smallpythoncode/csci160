@@ -1,34 +1,34 @@
 """Jahnke, Student ID: 0808831
 kenny.jahnke@ndus.edu / greensaber77@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
-Program XX, Part X
+Program 10, Part 2
 Copyright (C) 2022 Kenneth Jahnke
 
 Required Functions:
 
     readClasses (fileName)
-        - TODO
+        - Reads fileName and converts its data into a dictionary.
     totalCredits (theDictionary)
-        - TODO
+        - Calculates the total credits student is taking this semester.
     classesByDepartment (theDictionary, department)
-        - TODO
-    classesByCredits (theDictionary, credtits)
-        - TODO
+        - Lists the courses being taken from specific department.
+    classesByCredits (theDictionary, credits)
+        - Lists the courses worth a specific credit value.
     isFulltime (theDictionary)
-        - TODO
+        - Determines if student is full-time (>= 12 credits).
     numOfClasses (theDictionary)
         - Returns the number of classes a student is taking.
     upperLevelCredits (theDictionary)
-        - TODO
+        - Counts the number of upper-level undergraduate credits.
     printClasses (theDictionary)
-        - TODO
+        - Prints a table displaying the student's class information.
 
 Discretionary Functions:
 
     promptFileNameRead ()
         - Prompts for desired text file name for use in read mode.
-
-    # TODO
+    listSortAscending (listToSort):
+        - Sorts the contents of a list in ascending order.
 """
 from os.path import isfile
 
@@ -59,6 +59,28 @@ def promptFileNameRead ():
                                 "\"Enter\" to exit.")
 
 
+# discretionary
+def listSortAscending (listToSort):
+    """Sorts the contents of a list in ascending order.
+
+    :param list listToSort: The items to be sorted.
+    :raise TypeError: listToSort must be comprised of objects of like
+        types; cannot compare strings to ints/floats
+    :rtype: None
+    """
+    # this index...
+    for targetIndex in range (0, len (listToSort) - 1):
+        # ...compared to this index
+        for comparisonIndex in range (targetIndex + 1, len (listToSort)):
+            if listToSort[targetIndex] > listToSort[comparisonIndex]:
+                # target character
+                temp = listToSort[comparisonIndex]
+                # character moved into unsorted series
+                listToSort[comparisonIndex] = listToSort[targetIndex]
+                # target character moved into sorted position
+                listToSort[targetIndex] = temp
+
+
 def readClasses (fileName):
     """Reads fileName and converts its data into a dictionary.
 
@@ -82,9 +104,10 @@ def readClasses (fileName):
 
 
 def totalCredits (theDictionary):
-    """Calculates the total credits the student is taking this semester.
+    """Calculates the total credits student is taking this semester.
 
-    :param dict theDictionary: The student's class information
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
     :return: The total credits
     :rtype: int
     """
@@ -99,7 +122,8 @@ def totalCredits (theDictionary):
 def classesByDepartment (theDictionary, department):
     """Lists the courses being taken from specific department.
 
-    :param dict theDictionary: The student's class information
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
     :param str department: The department in question
     :return: The courses being taken within department
     :rtype: list
@@ -118,7 +142,8 @@ def classesByDepartment (theDictionary, department):
 def classesByCredits (theDictionary, credits):
     """Lists the courses worth a specific credit value.
 
-    :param dict theDictionary: The student's class information
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
     :param int credits: The credit value by which classes are queried
     :return: The courses worth the value of credits
     :rtype: list
@@ -132,83 +157,114 @@ def classesByCredits (theDictionary, credits):
     return classes
 
 
-# TODO
-# TODO utilize totalCredits ()
 def isFulltime (theDictionary):
+    """Determines if student is full-time (>= 12 credits).
+
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
+    :return: True if full-time, False otherwise
+    :rtype: bool
     """
-    TODO
-    :param dict theDictionary: The student's class information
-    :return:
-    """
-    pass
+    total = totalCredits(theDictionary)
+    if total >= 12:
+        return True
+    else:
+        return False
 
 
-# TODO test this
 def numOfClasses (theDictionary):
     """Returns the number of classes a student is taking.
 
     .. note::
-        Does not couple labs to classes. BIOL 150 and BIOL 150L are
-        counted as separate classes.
+        Does not couple labs to classes. For instance, BIOL 150 and BIOL
+        150L are counted as separate classes.
 
-    :param dict theDictionary: The student's class information
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
     :return: The number of classes
     :rtype: int
     """
     return len (theDictionary)
 
 
-# TODO
 def upperLevelCredits (theDictionary):
+    """Counts the number of upper-level undergraduate credits.
+
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
+    :return: The number of credits
+    :rtype: int
     """
-    TODO
-    :param dict theDictionary: The student's class information
-    :return:
-    """
-    pass
+    numCredits = 0
+
+    for i in theDictionary:
+        deptAndNum = i.split ()
+        if int (deptAndNum[1][:3]) in range(300, 500):
+            numCredits += theDictionary[i]
+
+    return numCredits
 
 
-# TODO
 def printClasses (theDictionary):
+    """Prints a table displaying the student's class information.
+
+    List classes alphabetically in the left column, their credit-worth
+    in the right column. The last row displays the total number of
+    credits.
+
+    :param dict[str, int] theDictionary: The student's class information
+        with the class as the key and the number or credits as the value
+    :rtype: None
     """
-    TODO
-    :param dict theDictionary: The student's class information
-    :return:
-    """
-    pass
+    classes = [i for i in theDictionary]
+    listSortAscending (classes)
+
+    print ("CLASS NAME    | CREDITS")
+    print ("=" * 23)
+    for className in classes:
+        print (f"{className:<13s}", "|", f"{theDictionary[className]:>7d}")
+    print ("=" * 23)
+    print (f"TOTAL CREDITS | {totalCredits (theDictionary):>7d}")
 
 
 def main ():
     print ("This program will read class data from a text file then give us "
-           "information about that data.")
-    # FIXME
-    # fileName = promptFileNameRead()
-    small = "small.txt"
-    big = "big.txt"
-    fileName = big
+           "information about that data.\n")
+    fileName = promptFileNameRead()
 
     if fileName is None:
         print ("No valid file name passed. Exiting program.")
     else:
+        # readClasses test
         classInfo = readClasses (fileName)
-        print (classInfo)
-        numTotalCredits = totalCredits (classInfo)
-        print ("Total number of credits:", numTotalCredits)
-        computerScience = "CSCI"
-        listOfCSCICourses = classesByDepartment (classInfo, computerScience)
-        print (computerScience, "courses:", listOfCSCICourses)
+        print("The dictionary containing class information:\n\t", classInfo)
+
+        # totalCredits test
+        print ("Total number of credits:", totalCredits (classInfo))
+
+        # classesByDepartment test
+        departmentQuery = "CSCI"
+        listOfCSCICourses = classesByDepartment (classInfo, departmentQuery)
+        print (departmentQuery, "courses:", listOfCSCICourses)
+
+        # classesByCredits test
         numCreditQuery = 3
         listOf3CreditCourses = classesByCredits (classInfo, numCreditQuery)
         print (numCreditQuery, "-credit courses: ", listOf3CreditCourses,
                sep="")
 
+        # isFullTime test
+        print ("Student is full-time:", isFulltime (classInfo))
 
+        # numOfClasses test
+        print ("Number of classes:", numOfClasses (classInfo))
 
+        # upperLevelCredits test
+        print ("Number of upper-level credits:", upperLevelCredits(classInfo))
 
-
-
-
-
+        # printClasses test
+        print ()
+        printClasses (classInfo)
 
 
 if __name__ == "__main__":
