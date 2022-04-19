@@ -9,6 +9,30 @@ Copyright (C) 2022 Kenneth Jahnke
 from os.path import isfile
 
 
+def generate_example():
+    """Generates an example of a text file for language data.
+
+    :return:
+    """
+    example = {
+        'one': 'uno',
+        'two': 'dos',
+        'three': 'tres',
+        'four': 'cuatro',
+        'five': 'cinco',
+        'six': 'seis',
+        'seven': 'sieto',
+        'eight': 'ocho',
+        'nine': 'nueve',
+        'ten': 'diez'
+    }
+
+    file = "example_dictionary.txt"
+    with open(file, "w") as f:
+        for i in example:
+            f.write(f"{i}:{example[i]}\n")
+
+
 def txt_to_dict(file=None):
     """Converts text file language data to a dictionary.
 
@@ -18,18 +42,38 @@ def txt_to_dict(file=None):
     :param str file:
         The name of the text file from which to convert translation
         data to a dict. If no argument is presented, defaults to
-        "english_spanish_dictionary.txt". Format of line data:
+        "example_dictionary.txt". Format of line data:
         "ENGLISHWORD:SPANISHWORD"
     :return:
         If file is a text file and its data is formatted correctly,
         will return the dict with English words as keys and
         corresponding Spanish word as values. Otherwise, returns None.
-    :rtype: dict[str, str] or None
+    :rtype: dict[str, Union[int, None, dict[int, str]]
     """
-    if file is None:
-        file = "english_spanish_dictionary.txt"
+    return_data = {
+        "code": 0,
+        "data": None,
+        "legend": {
+            1: "Data from text file parsed into dictionary.",
+            0: "No data.",
+            -1: "File does not exist.",
+            -2: "No text file detected. Data must be in text file to parse.",
+            -3: "Data formatting incorrect. Check data."
+        }
+    }
 
-    if file[-4:] == ".txt":
+
+
+    if file is None:
+        file = "example_dictionary.txt"
+        if not isfile(file):
+            generate_example()
+
+    if not isfile(file):
+        return_data["code"] = -1
+    if file[-4:] != ".txt":
+        return_data["code"] = -2
+    else:
         dictionary = {}
         with open(file) as f:
             for line in f:
@@ -41,8 +85,9 @@ def txt_to_dict(file=None):
                     not translation[0].isalpha() or
                     not translation[1].isalpha()
                 ):
-                    return None
-                dictionary[translation[0]] = translation[1]
+                    return_data["code"] = -3
+                else:
+                    dictionary[translation[0]] = translation[1]
 
         return dictionary
 
