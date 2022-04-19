@@ -1,0 +1,10 @@
+one:uno
+two:dos
+three:tres
+four:cuatro
+five:cinco
+six:seis
+seven:sieto
+eight:ocho
+nine:nueve
+ten:diez
