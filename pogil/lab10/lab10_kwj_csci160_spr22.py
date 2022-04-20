@@ -10,9 +10,9 @@ from os.path import isfile
 
 
 def generate_example():
-    """Generates an example of a text file for language data.
+    """Generates an example language data file in working directory.
 
-    :return:
+    :rtype: None
     """
     example = {
         'one': 'uno',
@@ -57,8 +57,7 @@ def txt_to_dict(file=None):
             1: "Data from text file parsed into dictionary.",
             0: "No data.",
             -1: "File does not exist.",
-            -2: "No text file detected. Data must be in text file to parse.",
-            -3: "Data formatting incorrect. Check data."
+            -2: "Data formatting incorrect. Check data."
         }
     }
 
@@ -71,8 +70,6 @@ def txt_to_dict(file=None):
 
     if not isfile(file):
         return_data["code"] = -1
-    if file[-4:] != ".txt":
-        return_data["code"] = -2
     else:
         dictionary = {}
         with open(file) as f:
@@ -85,7 +82,7 @@ def txt_to_dict(file=None):
                     not translation[0].isalpha() or
                     not translation[1].isalpha()
                 ):
-                    return_data["code"] = -3
+                    return_data["code"] = -2
                 else:
                     dictionary[translation[0]] = translation[1]
 
