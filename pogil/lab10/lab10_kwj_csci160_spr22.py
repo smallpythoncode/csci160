@@ -154,9 +154,27 @@ def main():
     print(translation.values())
 
     print(english_to_spanish(translation, "oneghfdgdfs"))
-    print(spanish_to_english(translation, "uno"))
+    print(spanish_to_english(translation, "cuatro"))
 
-    # TODO write for loop that ends with blank
+    file = input("Enter name of language translation data file: ")
+    dictionary = txt_to_dict(file)
+
+    if dictionary is not None:
+        print("Enter an English word to find its Spanish translation.\n"
+              "To quit, press \"Enter\".")
+        # TODO
+        while True:
+            word = input("Enter a word to translate: ")
+            if word == "":
+                break
+            elif english_to_spanish(dictionary, word) is not None:
+                print(f"The Spanish translation is "
+                      f"{english_to_spanish(dictionary, word)}.")
+            elif spanish_to_english(dictionary, word) is not None:
+                print(f"That is a Spanish word.\nIt's English translation is "
+                      f"{spanish_to_english(dictionary, word)}.")
+
+
 
 
 
