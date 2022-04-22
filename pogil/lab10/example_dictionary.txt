@@ -4,7 +4,7 @@ three:tres
 four:cuatro
 five:cinco
 six:seis
-seven:sieto
+seven:siete
 eight:ocho
 nine:nueve
 ten:diez

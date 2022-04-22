@@ -128,8 +128,8 @@ def txt_to_dict(file=None, metadata=False):
 def english_to_spanish(dictionary, word):
     """Translates an English word to Spanish.
 
-    Not compatible with translation data accompanied by metadata (See
-    txt_to_dict documentation).
+    Current version this function is incapable of parsing translation
+    data within a metadata dict (see txt_to_dict documentation).
 
     :param dict[str, str] dictionary:
         Keys are an English word and the value is the respective Spanish
@@ -151,8 +151,8 @@ def english_to_spanish(dictionary, word):
 def spanish_to_english(dictionary, word):
     """Translates a Spanish word to English.
 
-    Not compatible with translation data accompanied by metadata (See
-    txt_to_dict documentation).
+    Current version this function is incapable of parsing translation
+    data within a metadata dict (see txt_to_dict documentation).
 
     :param dict[str, str] dictionary:
         Keys are an English word and the value is the respective Spanish
