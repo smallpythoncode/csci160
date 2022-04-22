@@ -12,6 +12,8 @@ Functions:
         - Generates an example language data file in working directory.
     txt_to_dict(file=None, metadata=False):
         - Converts language translation data from file to a dict.
+    english_to_spanish(dictionary, word):
+        - Returns the translation of an English word (if in dictionary).
 
 
 """
@@ -22,7 +24,8 @@ from os.path import isfile
 def generate_example():
     """Generates an example language data file in working directory.
 
-    :rtype: None
+    :rtype:
+        None
     """
     example = {
         'one': 'uno',
@@ -69,7 +72,8 @@ def txt_to_dict(file=None, metadata=False):
         Spanish words as the respective values.
 
         fdsa
-    :rtype: dict[str, Union[int, None, dict[int, str]]
+    :rtype:
+        dict
     """
     return_data = {
         "data": None,
@@ -78,7 +82,7 @@ def txt_to_dict(file=None, metadata=False):
             1: "Translation data acquired.",
             0: "No data.",
             -1: "File does not exist.",
-            -2: "Data formatting incorrect. Check data."
+            -2: "Data formatting incorrect."
         }
     }
 
@@ -122,57 +126,84 @@ def txt_to_dict(file=None, metadata=False):
 
 
 def english_to_spanish(dictionary, word):
-    """
-    # TODO
-    :param dictionary:
-    :param word:
+    """Translates an English word to Spanish.
+
+    Not compatible with translation data accompanied by metadata (See
+    txt_to_dict documentation).
+
+    :param dict[str, str] dictionary:
+        Keys are an English word and the value is the respective Spanish
+        translation. Use this guideline when expanding an
+        English/Spanish dictionary or developing dictionaries for other
+        languages.
+    :param str word:
+        The English word to be translated
     :return:
+        The Spanish translation of word if within dictionary, else None.
+    :rtype:
+        str or None
     """
     for key in dictionary:
         if key == word:
             return dictionary[key]
 
-
+# TODO
 def spanish_to_english(dictionary, word):
-    """
-    # TODO
-    :param dictionary:
-    :param word:
-    :return:
-    """
-    # spanish = dictionary.values()
-    # english = dictionary.keys()
+    """Translates a Spanish word to English.
 
+    Not compatible with translation data accompanied by metadata (See
+    txt_to_dict documentation).
+
+    :param dict[str, str] dictionary:
+        Keys are an English word and the value is the respective Spanish
+        translation. Use this guideline when expanding an
+        English/Spanish dictionary or developing dictionaries for other
+        languages.
+    :param str word:
+        The Spanish word to be translated
+    :return:
+        The English translation of word if within dictionary, else None.
+    :rtype:
+        str or None
+    """
     for i in range(len(list(dictionary.values()))):
         if list(dictionary.values())[i] == word:
             return list(dictionary.keys())[i]
 
 
 def main():
-    translation = txt_to_dict()
-    print(txt_to_dict())
-    print(translation.values())
+    print("Welcome")
 
-    print(english_to_spanish(translation, "oneghfdgdfs"))
-    print(spanish_to_english(translation, "cuatro"))
+    while True:
+        file = input("Enter name of language translation data file: ")
+        dictionary = txt_to_dict(file)
 
-    file = input("Enter name of language translation data file: ")
-    dictionary = txt_to_dict(file)
+        # not None, i.e., translation data acquired
+        if dictionary is not None:
+            print("Enter an English word to find its Spanish translation.\n"
+                  "To quit, press \"Enter\".")
+            # TODO
+            while True:
+                word = input("Word to translate: ").lower()
+                if word == "":
+                    break
+                elif english_to_spanish(dictionary, word) is not None:
+                    print(f"The Spanish translation is "
+                          f"{english_to_spanish(dictionary, word)}.")
+                elif spanish_to_english(dictionary, word) is not None:
+                    print(f"That is a Spanish word.\nIt's English translation "
+                          f"is {spanish_to_english(dictionary, word)}.")
+                else:
+                    print(f"There is no available tranlsation for the word "
+                          f"{word}.")
+            break
 
-    if dictionary is not None:
-        print("Enter an English word to find its Spanish translation.\n"
-              "To quit, press \"Enter\".")
-        # TODO
-        while True:
-            word = input("Enter a word to translate: ")
-            if word == "":
-                break
-            elif english_to_spanish(dictionary, word) is not None:
-                print(f"The Spanish translation is "
-                      f"{english_to_spanish(dictionary, word)}.")
-            elif spanish_to_english(dictionary, word) is not None:
-                print(f"That is a Spanish word.\nIt's English translation is "
-                      f"{spanish_to_english(dictionary, word)}.")
+        else:
+            print(f"{file} either does not exist or its data is improperly "
+                  f"formatted.Options:\n\t"
+                  f"- Enter custom file name again.\n\t"
+                  f"- Enter \"example_dictionary.txt \n\t"
+                  f"- press \"Enter\" to exit.")
 
 
 
