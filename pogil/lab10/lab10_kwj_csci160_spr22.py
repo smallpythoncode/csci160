@@ -172,11 +172,21 @@ def spanish_to_english(dictionary, word):
 
 
 def main():
-    print("Welcome")
+    print("Welcome. In this program we will translate English words to "
+          "Spanish.")
 
+    # future version could incorporate a flag within input to indicate that
+    # text_to_dict would return metadata dictionary
+    # see english_to_spanish and spanish_to_english documentation for context
     while True:
         file = input("Enter name of language translation data file: ")
-        dictionary = txt_to_dict(file)
+        if file == "exit":
+            break
+        elif file == "":
+            # utilize "example_dictionary.txt"
+            dictionary = txt_to_dict()
+        else:
+            dictionary = txt_to_dict(file)
 
         # not None, i.e., translation data acquired
         if dictionary is not None:
@@ -200,13 +210,8 @@ def main():
 
         else:
             print(f"{file} either does not exist or its data is improperly "
-                  f"formatted.Options:\n\t"
-                  f"- Enter custom file name again.\n\t"
-                  f"- Enter \"example_dictionary.txt \n\t"
-                  f"- press \"Enter\" to exit.")
-
-
-
+                  f"formatted.\nEnter name of valid dictionary file name "
+                  f"or enter \"exit\".")
 
 
 if __name__ == "__main__":
