@@ -1,19 +1,29 @@
 """Jahnke, Student ID: 0808831
-kenny.jahnke@ndus.edu / greensaber77@gmail.com
+kenny.jahnke@ndus.edu / smallpythoncode@gmail.com
 CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Lab 10
 Copyright (C) 2022 Kenneth Jahnke
 
-# TODO description
+Assignment:
+    1. Prompt user for text file containing translation data.
+        - Designed for English/Spanish translation
+        - Could be any language pair
+        - Line format: "ENGLISHWORD:SPANISHWORD"
+    2. Prompt user for word to translate.
+        - If word is English, will output Spanish translation
+        - If word is Spanish, will output English translation
+        - Notifies user if translation is not available for desired word
+        - Continues to prompt until user presses "Enter" (blank)
 
 Functions:
-
     generate_example():
         - Generates an example language data file in working directory.
     txt_to_dict(file=None, metadata=False):
         - Converts language translation data from file to a dict.
     english_to_spanish(dictionary, word):
-        - Returns the translation of an English word (if in dictionary).
+        - Translates an English word to Spanish.
+    spanish_to_english(dictionary, word):
+        - Translates a Spanish word to English.
 
 
 """
@@ -204,7 +214,7 @@ def main():
                     print(f"That is a Spanish word.\nIt's English translation "
                           f"is {spanish_to_english(dictionary, word)}.")
                 else:
-                    print(f"There is no available tranlsation for the word "
+                    print(f"There is no available translation for the word "
                           f"{word}.")
             break
 

@@ -8,3 +8,4 @@ seven:siete
 eight:ocho
 nine:nueve
 ten:diez
+don't:no
