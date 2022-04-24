@@ -46,11 +46,11 @@ def createLockers (num=999):
     :rtype: dict[str, str]
     """
     lockers = {}
-    digits = len(str(num))
+    digits = len (str (num))
 
-    for i in range(1, num + 1):
-        zeroes = digits - len(str(i))
-        locker = "0" * zeroes + str(i)
+    for i in range (1, num + 1):
+        zeroes = digits - len (str (i))
+        locker = "0" * zeroes + str (i)
         lockers[locker] = "open"
 
     return lockers
@@ -96,7 +96,7 @@ def assignLocker (lockers):
     print ("Assign a student to a locker number.\n"
            "To finish assignment, press \"Enter\" for a student's name.")
     while True:
-        name = input("Student's name: ").title ()
+        name = input ("Student's name: ").title ()
         if name == "":
             break
         else:
@@ -157,22 +157,22 @@ def promptTextFileWrite ():
     :rtype: str
     """
     while True:
-        fileName = input ("File name: ").lower ()
+        fileName = input ("Text file name: ").lower ()
         if fileName[-4:] != ".txt":
             print ("File name must include \".txt\" extension.")
-        elif not isfile(fileName):
+        elif not isfile (fileName):
             return fileName
         else:
-            print(fileName, "already exists. Do wish to overwrite?")
+            print (fileName, "already exists. Do wish to overwrite?")
             while True:
-                overwritePrompt = input("y/n: ").lower()
+                overwritePrompt = input ("y/n: ").lower ()
                 if overwritePrompt in ["y", "yes"]:
                     return fileName
                 elif overwritePrompt in ["n", "no"]:
                     break
 
 
-def main():
+def main ():
     lockers = createLockers ()
 
     assignLocker (lockers)

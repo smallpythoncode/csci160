@@ -157,7 +157,7 @@ def english_to_spanish(dictionary, word):
         if key == word:
             return dictionary[key]
 
-# TODO
+
 def spanish_to_english(dictionary, word):
     """Translates a Spanish word to English.
 
@@ -202,7 +202,7 @@ def main():
         if dictionary is not None:
             print("Enter an English word to find its Spanish translation.\n"
                   "To quit, press \"Enter\".")
-            # TODO
+
             while True:
                 word = input("Word to translate: ").lower()
                 if word == "":
