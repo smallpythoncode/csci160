@@ -46,11 +46,11 @@ def createLockers (num=999):
     :rtype: dict[str, str]
     """
     lockers = {}
-    digits = len (str (num))
+    digits = len(str(num))
 
-    for i in range (1, num + 1):
-        zeroes = digits - len (str (i))
-        locker = "0" * zeroes + str (i)
+    for i in range(1, num + 1):
+        zeroes = digits - len(str(i))
+        locker = "0" * zeroes + str(i)
         lockers[locker] = "open"
 
     return lockers
@@ -73,12 +73,12 @@ def lockerNumDigits (lockerNum, digits=3):
     :rtype: str or None
     """
     try:
-        int (lockerNum)
+        int(lockerNum)
     except ValueError:
         return None
 
-    if 1 <= len (lockerNum) <= digits:
-        lockerNum = "0" * (digits - len (lockerNum)) + lockerNum
+    if 1 <= len(lockerNum) <= digits:
+        lockerNum = "0" * (digits - len(lockerNum)) + lockerNum
         return lockerNum
 
 
@@ -93,43 +93,43 @@ def assignLocker (lockers):
         lockers updated with student assignments
     :rtype: dict[str, str]
     """
-    print ("Assign a student to a locker number.\n"
-           "To finish assignment, press \"Enter\" for a student's name.")
+    print("Assign a student to a locker number.\n"
+          "To finish assignment, press \"Enter\" for a student's name.")
     while True:
-        name = input ("Student's name: ").title ()
+        name = input("Student's name: ").title()
         if name == "":
             break
         else:
-            singleName = name.split ()
-            if len (singleName) != 1:
+            singleName = name.split()
+            if len(singleName) != 1:
                 # only done for assignment
                 # ideally, a full student name would be accepted
                 print("Enter only the student's first name.")
             else:
                 while True:
-                    digits = len (str (len (lockers)))
-                    lockerPrompt = input (f"Locker number to assign to "
-                                          f"{name}: ")
-                    locker = lockerNumDigits (lockerPrompt, digits)
+                    digits = len(str(len(lockers)))
+                    lockerPrompt = input(f"Locker number to assign to "
+                                         f"{name}: ")
+                    locker = lockerNumDigits(lockerPrompt, digits)
                     if (
                         not locker or
                         locker not in lockers
                     ):
-                        min = lockerNumDigits ("1", digits)
-                        max = str (len (lockers))
-                        print (f"Locker number must be between "
-                               f"{min} and {max}.")
+                        minimum = lockerNumDigits("1", digits)
+                        maximum = str(len(lockers))
+                        print(f"Locker number must be between "
+                              f"{minimum} and {maximum}.")
 
                     elif lockers[locker] != "open":
-                        print (f"Locker number {locker} is already assigned "
-                               f"to {lockers[locker]}.")
+                        print(f"Locker number {locker} is already assigned "
+                              f"to {lockers[locker]}.")
                         overwrite_confirm = False
 
                         while True:
-                            overwrite = input ("Overwrite locker assignment? "
-                                               "(y/n): ").lower ()
+                            overwrite = input("Overwrite locker assignment? "
+                                              "(y/n): ").lower()
                             if overwrite not in ["y", "yes", "n", "no"]:
-                                print (f"{overwrite} is not a valid response.")
+                                print(f"{overwrite} is not a valid response.")
                             elif overwrite in ["y", "yes"]:
                                 lockers[locker] = name
                                 overwrite_confirm = True
@@ -157,15 +157,15 @@ def promptTextFileWrite ():
     :rtype: str
     """
     while True:
-        fileName = input ("Text file name: ").lower ()
+        fileName = input("Text file name: ").lower()
         if fileName[-4:] != ".txt":
-            print ("File name must include \".txt\" extension.")
-        elif not isfile (fileName):
+            print("File name must include \".txt\" extension.")
+        elif not isfile(fileName):
             return fileName
         else:
-            print (fileName, "already exists. Do wish to overwrite?")
+            print(fileName, "already exists. Do wish to overwrite?")
             while True:
-                overwritePrompt = input ("y/n: ").lower ()
+                overwritePrompt = input("y/n: ").lower()
                 if overwritePrompt in ["y", "yes"]:
                     return fileName
                 elif overwritePrompt in ["n", "no"]:
@@ -173,14 +173,14 @@ def promptTextFileWrite ():
 
 
 def main ():
-    lockers = createLockers ()
+    lockers = createLockers()
 
-    assignLocker (lockers)
+    assignLocker(lockers)
 
     print ("Name the file to store your locker assignment data to.")
-    fileName = promptTextFileWrite ()
+    fileName = promptTextFileWrite()
 
-    with open (fileName, "w") as f:
+    with open(fileName, "w") as f:
         for line in lockers:
             f.write (f"{line}\t{lockers[line]}\n")
 
