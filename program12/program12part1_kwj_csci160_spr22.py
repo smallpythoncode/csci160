@@ -86,6 +86,9 @@ def writeDictToFile (theDictionary, fileName, delimiter="\t"):
 def addItemstoMenu (menu):
     """Prompts for menu items and prices to add to menu.
 
+    Adds multiple items to menu. Do not confuse with
+    program12-2
+
     :param dict menu:
         Menu items are keys; prices are values.
     :except ValueError:
