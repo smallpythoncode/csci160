@@ -12,11 +12,11 @@ Assignment:
     the keys and the values.
 
 .. note::
-    Function HEADERS are written exactly as specified per assignment
-    instructions, i.e., written in camelCase with whitespace between the
-    function's name and its parameters. camelCase persists for
-    declaration of variables for consistency. When a function is called,
-    the absence of whitespace between a function's name and its
+    Function HEADERS are written according to convention established by
+    assignment issuer, i.e., written in camelCase with whitespace
+    between the function's name and its parameters. camelCase persists
+    for declaration of variables for consistency. When a function is
+    called, the absence of whitespace between a function's name and its
     arguments was judged to have no effect on performance; thus, such
     whitespace is excluded outside of function headers.
 
