@@ -5,7 +5,11 @@ Program 12, Part 1
 Copyright (C) 2022 Kenneth Jahnke
 
 Assignment:
-    # TODO
+    1. Ask for a number of menu items and their prices.
+    2. Fill a dictionary with those items/prices.
+    3. Prompt for a file name to write the dictionary to.
+    4. Write the dictionary to the file with a tab character separating
+    the keys and the values.
 
 .. note::
     Function HEADERS are written exactly as specified per assignment
