@@ -91,7 +91,8 @@ def prompt_major(tracked_majors=("cs", "data", "cyber"),
     [minors_are_tracked=False]
     """
 
-    # FIXME may add individual letters to temp_majors if tracked_majors is str
+    # REVIEW may add individual letters to temp_majors if
+    # tracked_majors is str
     temp_majors = []
     for major in tracked_majors:
         temp_majors.append(major)

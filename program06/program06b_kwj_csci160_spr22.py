@@ -39,7 +39,7 @@ def draw_k(x, y, letter_color="lime green"):
     :return: None
     :raise TypeError: x, y must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
@@ -75,7 +75,7 @@ def draw_w(x, y, letter_color="peru"):
     :return: None
     :raise TypeError: x, y must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
@@ -122,7 +122,7 @@ def draw_j(x, y, letter_color="slate blue"):
     :return: None
     :raise TypeError: x, y must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
@@ -157,7 +157,7 @@ def draw_shadow_k(x, y, letter_color="black", offset=3):
     :return: None
     :raise TypeError: x, y, offset must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
@@ -181,7 +181,7 @@ def draw_shadow_w(x, y, letter_color="black", offset=3):
     :return: None
     :raise TypeError: x, y, offset must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
@@ -205,7 +205,7 @@ def draw_shadow_j(x, y, letter_color="black", offset=3):
     :return: None
     :raise TypeError: x, y, offset must be integers
 
-    # FIXME: How can r, g, b values be used for letter_color? (type)
+    # REVIEW How can r, g, b values be used for letter_color? (type)
     """
 
     setOutline(letter_color)
