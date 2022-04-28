@@ -24,24 +24,95 @@ Required Functions:
 
 # TODO
 Discretionary Functions:
-    fdsa
+    textFileToDict (fileName, delimiter="\t"):
+        - Reads fileName and converts its data into a dict.
+
 
 
 
 """
 
-# TODO
-def readMenuItems (fileName):
-    """
-    # TODO
+from statistics import mean
+
+
+# discretionary
+def textFileToDict (fileName, kType="s", vType="s", delimiter="\t"):
+    """Reads fileName and converts its data into a dict.
+
+    Correct line data format: "KEY[delimiter]VALUE".
 
     :param str fileName:
-
+        The text file to pull data from.
+    :param str kType:
+        The target data type of keys assigned to the dict: "s" for str;
+        "i" for int; "f" for float.
+    :param str vType:
+        The target data type of values assigned to the dict: "s" for
+        str; "i" for int; "f" for float.
+    :param str delimiter:
+        The character separating key data from value data.
     :return:
-
-    :rtype:
+        A dictionary containing desired data.
+    :rtype: dict or None
+    :except ValueError:
+        Will return None if data is formatted incorrectly or data is
+        incapable of being converted to target kType/vType.
     """
-    pass
+    dictionary = {}
+    validTypes = {"s": str, "i": int, "f": float}
+
+    if (
+        kType not in validTypes or
+        vType not in validTypes
+    ):
+        return None
+
+    kType = validTypes[kType]
+    vType = validTypes[vType]
+
+    with open(fileName) as f:
+        for line in f:
+            # strips "\n"
+            line = line.strip()
+            try:
+                key, value = line.split(delimiter)
+            except ValueError:
+                return None
+
+            try:
+                if kType == int:
+                    key = float(key)
+                    key = kType(key)
+                else:
+                    key = kType(key)
+
+                if vType == int:
+                    value = float(value)
+                    value = vType(value)
+                else:
+                    value = vType(value)
+            except ValueError:
+                return None
+
+            dictionary[key] = value
+
+    return dictionary
+
+
+def readMenuItems (fileName):
+    """Fills a dict with menu items and price data from fileName.
+
+    :param str fileName:
+        Text file containing lines of menu items followed by prices
+        separated by a tab character.
+    :return:
+        Dict with menu items as keys and prices as values.
+    :rtype: dict[str, float]
+    """
+    dictionary = textFileToDict(fileName, "s", "f")
+
+    return dictionary
+
 
 
 # TODO
@@ -49,7 +120,7 @@ def totalMenuItems (theDictionary):
     """
     # TODO
 
-    :param dict[str, int] theDictionary:
+    :param dict[str, float] theDictionary:
 
     :return:
 
@@ -62,7 +133,7 @@ def totalMenuItems (theDictionary):
 def getMenuItems (theDictionary):
     """
     # TODO
-    :param dict[str, int] theDictionary:
+    :param dict[str, float] theDictionary:
 
     :return:
 
@@ -76,107 +147,110 @@ def getMenuItemsWithinRange (theDictionary, lowerLimit, upperLimit):
     """
     # TODO
 
-    :param dict[str, int] theDictionary:
+    :param dict[str, float] theDictionary:
 
-    :param int lowerLimit:
+    :param float or int lowerLimit:
 
-    :param int upperLimit:
+    :param float or int upperLimit:
 
     :return:
+
     :rtype:
     """
     pass
 
 
 # TODO
-def addMenuItem():
+def addMenuItem(theDictionary, item, price):
     """
     # TODO
+    :param dict[str, float] theDictionary:
+
+    :param str item:
+
+    :param float or int price:
+
     :return:
+
+    :rtype:
     """
     pass
 
 
 # TODO
-def ():
+def updateMenuItem (theDictionary, item, price):
     """
     # TODO
+    :param dict[str, float] theDictionary:
+
+    :param str item:
+
+    :param float or int price:
+
     :return:
+
+    :rtype:
     """
     pass
 
 
 # TODO
-def ():
+def getMenuItemPrice (theDictionary, item):
     """
     # TODO
+    :param dict[str, float] theDictionary:
+
+    :param str item:
+
     :return:
+
+    :rtype: float
     """
     pass
 
 
 # TODO
-def ():
+def averagePrice (theDictionary):
     """
     # TODO
+    :param dict[str, float] theDictionary:
+
     :return:
+
+    :rtype: float
     """
     pass
 
 
 # TODO
-def ():
+def takeOrder (theDictionary):
     """
     # TODO
+    :param dict[str, float] theDictionary:
+
     :return:
+
+    :rtype:
     """
     pass
 
 
 # TODO
-def ():
+def printMenu (theDictionary):
     """
     # TODO
-    :return:
+    :param dict[str, float] theDictionary:
+
+    :rtype: None
     """
     pass
-
-
-# TODO
-def ():
-    """
-    # TODO
-    :return:
-    """
-    pass
-
-
-# TODO
-def ():
-    """
-    # TODO
-    :return:
-    """
-    pass
-
-
-# TODO
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def main():
-    pass
+    # FIXME
+    fileName = "burger_menu.txt"
+    x = readMenuItems(fileName)
+    print(x)
 
 
 if __name__ == "__main__":

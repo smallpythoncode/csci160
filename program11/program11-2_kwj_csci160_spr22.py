@@ -108,7 +108,7 @@ def lockerNumDigits (lockerNum, theDictionary):
 def textFileToDict (fileName, delimiter="\t"):
     """Reads fileName and converts its data into a dictionary.
 
-    Correct line data format: "KEY[delimiter]VALUE\n"
+    Correct line data format: "KEY[delimiter]VALUE"
 
     :param str fileName:
         The text file to pull data from
@@ -126,7 +126,6 @@ def textFileToDict (fileName, delimiter="\t"):
             # strips "\n"
             line = line.strip()
             keyAndValue = line.split(delimiter)
-            # [0] strips "\n"
             if len(keyAndValue) == 2:
                 dictionary[keyAndValue[0]] = keyAndValue[1]
             else:

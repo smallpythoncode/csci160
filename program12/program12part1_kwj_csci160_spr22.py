@@ -87,7 +87,8 @@ def addItemstoMenu (menu):
     """Prompts for menu items and prices to add to menu.
 
     Adds multiple items to menu. Do not confuse with
-    program12-2
+    program12part2_kwj_csci160_spr22.addMenuItem, which adds only a
+    single item.
 
     :param dict menu:
         Menu items are keys; prices are values.
