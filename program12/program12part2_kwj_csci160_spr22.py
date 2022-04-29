@@ -8,6 +8,11 @@ Assignment:
     # TODO
 
 .. note::
+    DATA FORMAT - Menu items (keys): uppercase strings; prices: floats
+    (within dicts) or string depictions of floats (if in a file).
+    Deviation of this format may produce undesirable results.
+
+.. note::
     Function HEADERS are written exactly as specified per assignment
     instructions, i.e., written in camelCase with whitespace between the
     function's name and its parameters. camelCase persists for
@@ -18,7 +23,32 @@ Assignment:
 
 # TODO
 Required Functions:
-    fdsa
+    readMenuItems (fileName)
+        - Fills a dict with menu items and price data from fileName.
+    totalMenuItems (theDictionary)
+        - Calculates the total number of items available on menu
+    getMenuItems (theDictionary):
+        - Identify what items are on the menu.
+    getMenuItemsWithinRange (theDictionary, lowerLimit, upperLimit):
+        - Identifies menu items that are in specified price range.
+
+
+
+
+
+    getMenuItemPrice (theDictionary, item):
+        - Identifies the price of item.
+    averagePrice (theDictionary)
+        - Identifies the average price of items on the menu.
+
+
+
+    printMenu (theDictionary)
+        - Prints a table of menu items and prices.
+
+
+
+
 
 
 
@@ -26,13 +56,8 @@ Required Functions:
 Discretionary Functions:
     promptTextFileRead ()
         - Prompts for desired text file name for use in read mode.
-    textFileToDict (fileName, kType="s", vType="s", delimiter="\t")
+    textFileToDict (fileName, kType="s", vType="s", delimiter=":")
         - Reads fileName and converts its data into a dict.
-
-
-
-
-
 """
 
 from os.path import isfile
@@ -62,7 +87,7 @@ def promptTextFileRead ():
 
 
 # discretionary
-def textFileToDict (fileName, kType="s", vType="s", delimiter="\t"):
+def textFileToDict (fileName, kType="s", vType="s", delimiter=":"):
     """Reads fileName and converts its data into a dict.
 
     Correct line data format: "KEY[delimiter]VALUE".
@@ -139,7 +164,7 @@ def readMenuItems (fileName):
         Dict with menu items as keys and prices as values.
     :rtype: dict[str, float]
     """
-    dictionary = textFileToDict(fileName, "s", "f")
+    dictionary = textFileToDict(fileName, "s", "f", "\t")
 
     return dictionary
 
@@ -158,35 +183,46 @@ def totalMenuItems (theDictionary):
     return len(theDictionary)
 
 
-# TODO
 def getMenuItems (theDictionary):
-    """
-    # TODO
+    """Identify what items are on the menu.
+
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :return:
-
-    :rtype:
+        A sorted list of menu items.
+    :rtype: list[str]
     """
-    pass
+    items = sorted(list(theDictionary.keys()))
+
+    return items
 
 
-# TODO
 def getMenuItemsWithinRange (theDictionary, lowerLimit, upperLimit):
-    """
-    # TODO
+    """Identifies menu items that are in specified price range.
+
+    Rounds lowerLimit and upperLimit to a valid dollar/cent value.
 
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :param float or int lowerLimit:
-
+        The minimum price to check for menu items.
     :param float or int upperLimit:
-
+        The maximum price to check for menu items.
     :return:
-
+        The menu items whose prices are within the specified price
+        range.
     :rtype:
     """
-    pass
+    items = getMenuItems(theDictionary)
+    inRangeItems = []
+
+    for item in items:
+        if lowerLimit <= theDictionary[item] <= upperLimit:
+            inRangeItems.append(item)
+
+    return inRangeItems
 
 
 # TODO
@@ -223,32 +259,40 @@ def updateMenuItem (theDictionary, item, price):
     pass
 
 
-# TODO
 def getMenuItemPrice (theDictionary, item):
-    """
-    # TODO
-    :param dict[str, float] theDictionary:
+    """Identifies the price of item.
 
+    Assumes items are written in uppercase.
+
+    :param dict[str, float] theDictionary:
+        Dict containing menu items as keys and respective prices as
+        prices.
     :param str item:
-
+        The name of item to check the price of.
     :return:
-
-    :rtype: float
+        The price of item if in theDictionary, else None.
+    :rtype: float or None
     """
-    pass
+    item = item.upper()
+
+    if item in theDictionary:
+        return theDictionary[item]
 
 
-# TODO
 def averagePrice (theDictionary):
-    """
-    # TODO
+    """Identifies the average price of items on the menu.
+
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :return:
-
+        The average of all prices rounded to 2 decimal places.
     :rtype: float
     """
-    pass
+    prices = list(theDictionary.values())
+    average = round(mean(prices), 2)
+
+    return average
 
 
 # TODO
@@ -264,15 +308,44 @@ def takeOrder (theDictionary):
     pass
 
 
-# TODO
 def printMenu (theDictionary):
-    """
-    # TODO
-    :param dict[str, float] theDictionary:
+    """Prints a table of menu items and prices.
 
+    :param dict[str, float] theDictionary:
+        Dict containing menu items as keys and respective prices as
+        prices.
     :rtype: None
     """
-    pass
+    itemColumnWidth = 1
+    priceColumnWidth = 1
+
+    for key, value in theDictionary.items():
+        if len(key) > itemColumnWidth:
+            itemColumnWidth = len(key)
+        if len(str(value)) > priceColumnWidth:
+            priceColumnWidth = len(str(value))
+
+    # + 1 to account for "$"
+    priceColumnWidth += 1
+    spacer = 4
+    totalWidth = itemColumnWidth + priceColumnWidth + spacer
+
+    menuItemsHeader = "Menu Items"
+    priceHeader = "Price"
+    print(
+        menuItemsHeader +
+        " " * (totalWidth - len(menuItemsHeader) - len(priceHeader)) +
+        priceHeader
+    )
+    print("=" * totalWidth)
+
+    for key, value in theDictionary.items():
+        print(
+            f"{key}" +
+            # - 1 to account for "$"
+            "." * (totalWidth - len(key) - len(str(value)) - 1) +
+            f"${value:>.2f}"
+        )
 
 
 # FIXME - print tests in order specified in "Display" instructions
@@ -292,14 +365,26 @@ def main():
 
     # testing totalMenuItems
     total = totalMenuItems(menu)
-    print(f"Total items available on menu: {total}")
+    print(f"Total items on menu: {total}")
     print()
 
     # testing getMenuItems
-
+    menuItems = getMenuItems(menu)
+    print(f"Sorted list of menu items: {menuItems}")
     print()
 
     # testing getMenuItemsWithinRange
+    ranges = [[5.99, 10.99], [8.99, 10.99], [1.99, 5.99]]
+
+    for r in ranges:
+        items = getMenuItemsWithinRange(menu, r[0], r[1])
+
+        if len(items) > 0:
+            print(f"List of menu items priced between ${r[0]} and ${r[1]}: "
+                  f"{items}")
+        else:
+            print(f"There are no menu items priced between ${r[0]} and "
+                  f"${r[1]}.")
 
     print()
 
@@ -316,16 +401,36 @@ def main():
     print()
 
     # testing getMenuItemPrice
+    itemsToPrice = [
+        "cheeseburger",
+        "mushroom swiss burger",
+        "chicken sandwich"
+    ]
+
+    for item in itemsToPrice:
+        price = getMenuItemPrice(menu, item)
+
+        if price:
+            print(f"The price of {item.upper()}: ${price}")
+        else:
+            print(f"{item.upper()} is not on the menu.")
 
     print()
 
     # testing averagePrice
-
+    average = averagePrice(menu)
+    print(f"The average price of items on the menu: ${average}")
     print()
 
     # testing printMenu
+    printMenu(menu)
 
-    print()
+    # FIXME
+    """
+    :param dict[str, float] theDictionary:
+        Dict containing menu items as keys and respective prices as
+        prices.
+    """
 
 
 

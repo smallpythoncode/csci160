@@ -8,8 +8,8 @@ Assignment:
     1. Ask for a number of menu items and their prices.
     2. Fill a dictionary with those items/prices.
     3. Prompt for a file name to write the dictionary to.
-    4. Write the dictionary to the file with a tab character separating
-    the keys and the values.
+    4. Write the dictionary to the file
+        - A tab character separates the keys and the values.
 
 .. note::
     Function HEADERS are written according to convention established by
@@ -23,9 +23,9 @@ Assignment:
 Functions:
     promptTextFileWrite ()
         - Prompts for desired text file name for use in write mode.
-    writeDictToFile (theDictionary, fileName, delimiter="\t"):
+    writeDictToFile (theDictionary, fileName, delimiter=":")
         - Writes the contents of a theDictionary to fileName.
-    addItemstoMenu (menu):
+    addItemsToMenu (menu)
         - Prompts for menu items and prices to add to menu.
 
 """
@@ -60,11 +60,13 @@ def promptTextFileWrite ():
                     break
 
 
-def writeDictToFile (theDictionary, fileName, delimiter="\t"):
+def writeDictToFile (theDictionary, fileName, delimiter=":"):
     """Writes the contents of a theDictionary to fileName.
 
     Writes one key/value pair per line within the file in format
     "KEY[delimiter]VALUE".
+
+    def
 
     Designed primarily for use with text files. Writing to other file
     types may have unintended consequences.
@@ -80,10 +82,10 @@ def writeDictToFile (theDictionary, fileName, delimiter="\t"):
     """
     with open(fileName, "w") as f:
         for key in theDictionary:
-            f.write (f"{key}{delimiter}{theDictionary[key]}\n")
+            f.write(f"{key}{delimiter}{theDictionary[key]}\n")
 
 
-def addItemstoMenu (menu):
+def addItemsToMenu (menu):
     """Prompts for menu items and prices to add to menu.
 
     Adds multiple items to menu. Do not confuse with
@@ -151,9 +153,10 @@ def addItemstoMenu (menu):
 
 def main():
     menu = {}
-    menu = addItemstoMenu(menu)
+    menu = addItemsToMenu(menu)
+    print("\nName the text file to write your menu data to.")
     fileName = promptTextFileWrite()
-    writeDictToFile(menu, fileName)
+    writeDictToFile(menu, fileName, "\t")
 
 
 if __name__ == "__main__":
