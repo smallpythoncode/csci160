@@ -230,16 +230,67 @@ def addMenuItem(theDictionary, item, price):
     """
     # TODO
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :param str item:
-
+        The name of the new item to be added to the menu.
     :param float or int price:
-
+        The price of item.
     :return:
 
     :rtype:
     """
-    pass
+    item = item.upper()
+
+
+
+    """
+    print("=== ADD MENU ITEMS ===\n"
+          "Name an item to add to the menu and assign each item a price.\n"
+          "To exit press \"Enter\" for item name.\n")
+
+    while True:
+        item = input("Item name: ").upper()
+        assignPrice = True
+
+        if item == "":
+            return menu
+
+        if item in menu:
+            assignPrice = False
+            print(f"{item} is an existing menu item. Its price is ${menu[item]}.")
+
+            while True:
+                overwrite = input(f"Change price of {item}? "
+                                  f"(y/n): ").lower()
+                if overwrite not in ["y", "yes", "n", "no"]:
+                    print(f"{overwrite} is not a valid response.")
+                elif overwrite in ["y", "yes"]:
+                    assignPrice = True
+                    break
+                else:
+                    break
+
+        if assignPrice:
+            while True:
+                price = input(f"{item} price: $")
+                validPrice = False
+
+                try:
+                    price = round(float(price), 2)
+
+                    if price < 0:
+                        print("A price cannot be negative.")
+                    else:
+                        validPrice = True
+
+                    if validPrice:
+                        menu[item] = price
+                        break
+
+                except ValueError:
+                    print(f"{price} is not a valid price")
+    """
 
 
 # TODO
@@ -247,7 +298,8 @@ def updateMenuItem (theDictionary, item, price):
     """
     # TODO
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :param str item:
 
     :param float or int price:
@@ -300,7 +352,8 @@ def takeOrder (theDictionary):
     """
     # TODO
     :param dict[str, float] theDictionary:
-
+        Dict containing menu items as keys and respective prices as
+        prices.
     :return:
 
     :rtype:
