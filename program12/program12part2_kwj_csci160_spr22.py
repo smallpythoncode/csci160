@@ -329,6 +329,7 @@ def takeOrder (theDictionary):
     # CAO 20220429
     btcRate = 0.000026
     orderItems = {}
+    total = 0.0
     menuItems = list(theDictionary.keys())
 
 
@@ -378,7 +379,6 @@ def takeOrder (theDictionary):
             print(f"{numX:<3s} {key}")
         print()
 
-        total = 0.0
         for item in orderItems:
             amount = orderItems[item] * theDictionary[item]
             total += amount
@@ -386,10 +386,14 @@ def takeOrder (theDictionary):
 
         print(f"Your total comes to ${total}.\n"
               f"We would also accept {btcTotal:.6f} Bitcoin.\n"
-              f"How would you like to pay?")
+              f"How would you like to pay?\n"
+              f"END MOCK ORDER.")
 
     else:
-        print("That person left without ordering anything. How strange....")
+        print("That person left without ordering anything. How strange....\n"
+              "END MOCK ORDER.")
+
+    return total
 
 
 def printMenu (theDictionary):
@@ -474,7 +478,8 @@ def main():
     print()
 
     # testing takeOrder
-    takeOrder(menu)
+    orderTotal = takeOrder(menu)
+    print(f"Order total (returned): ${orderTotal:.2f}")
     print()
 
     # testing addMenuItem
