@@ -5,7 +5,14 @@ Program 12, Part 2
 Copyright (C) 2022 Kenneth Jahnke
 
 Assignment:
-    # TODO
+    1. Write the required functions.
+    #. Prompt user for text file name containing menu data.
+    #. Display/manipulate the data as prescribed by required functions.
+
+.. note::
+    Assignment instructions declare "avergePrice (theDictionary)". The
+    decision was made to correct the spelling error and it this program
+    write the function name as "averagePrice".
 
 .. note::
     DATA FORMAT - Menu items (keys): uppercase strings; prices: floats
@@ -21,7 +28,6 @@ Assignment:
     arguments was judged to have no effect on performance; thus, such
     whitespace is excluded outside of function headers.
 
-# TODO
 Required Functions:
     readMenuItems (fileName)
         - Fills a dict with menu items and price data from fileName.
@@ -31,28 +37,19 @@ Required Functions:
         - Identify what items are on the menu.
     getMenuItemsWithinRange (theDictionary, lowerLimit, upperLimit):
         - Identifies menu items that are in specified price range.
-
-
-
-
-
-    getMenuItemPrice (theDictionary, item):
+    addMenuItem(theDictionary, item, price):
+        - Adds an item to the menu.
+    updateMenuItem (theDictionary, item, price):
+        - Update the price of item.
+    getMenuItemPrice (theDictionary, item)
         - Identifies the price of item.
     averagePrice (theDictionary)
         - Identifies the average price of items on the menu.
-
-
-
+    takeOrder (theDictionary)
+        - Create a mock order for a number of items from the menu.
     printMenu (theDictionary)
         - Prints a table of menu items and prices.
 
-
-
-
-
-
-
-# TODO
 Discretionary Functions:
     promptTextFileRead ()
         - Prompts for desired text file name for use in read mode.
@@ -61,6 +58,7 @@ Discretionary Functions:
 """
 
 from os.path import isfile
+from random import randint
 from statistics import mean
 
 
@@ -225,10 +223,9 @@ def getMenuItemsWithinRange (theDictionary, lowerLimit, upperLimit):
     return inRangeItems
 
 
-# TODO
 def addMenuItem(theDictionary, item, price):
-    """
-    # TODO
+    """Adds an item to the menu.
+
     :param dict[str, float] theDictionary:
         Dict containing menu items as keys and respective prices as
         prices.
@@ -237,78 +234,50 @@ def addMenuItem(theDictionary, item, price):
     :param float or int price:
         The price of item.
     :return:
-
-    :rtype:
+        True if item added to the menu or False if item was already on
+        the menu.
+    :rtype: bool
     """
     item = item.upper()
+    price = round(float(price), 2)
+
+    if item in theDictionary:
+        return False
+
+    theDictionary[item] = price
+
+    return True
 
 
-
-    """
-    print("=== ADD MENU ITEMS ===\n"
-          "Name an item to add to the menu and assign each item a price.\n"
-          "To exit press \"Enter\" for item name.\n")
-
-    while True:
-        item = input("Item name: ").upper()
-        assignPrice = True
-
-        if item == "":
-            return menu
-
-        if item in menu:
-            assignPrice = False
-            print(f"{item} is an existing menu item. Its price is ${menu[item]}.")
-
-            while True:
-                overwrite = input(f"Change price of {item}? "
-                                  f"(y/n): ").lower()
-                if overwrite not in ["y", "yes", "n", "no"]:
-                    print(f"{overwrite} is not a valid response.")
-                elif overwrite in ["y", "yes"]:
-                    assignPrice = True
-                    break
-                else:
-                    break
-
-        if assignPrice:
-            while True:
-                price = input(f"{item} price: $")
-                validPrice = False
-
-                try:
-                    price = round(float(price), 2)
-
-                    if price < 0:
-                        print("A price cannot be negative.")
-                    else:
-                        validPrice = True
-
-                    if validPrice:
-                        menu[item] = price
-                        break
-
-                except ValueError:
-                    print(f"{price} is not a valid price")
-    """
-
-
-# TODO
 def updateMenuItem (theDictionary, item, price):
-    """
-    # TODO
+    """Update the price of item.
+
     :param dict[str, float] theDictionary:
         Dict containing menu items as keys and respective prices as
         prices.
     :param str item:
-
+        The item whose price is to be updated.
     :param float or int price:
-
+        The updated price of item.
     :return:
-
-    :rtype:
+        True if item exists on the menu, else False.
+    :rtype: bool
     """
-    pass
+    item = item.upper()
+    price = round(float(price), 2)
+
+    if item in theDictionary:
+        theDictionary[item] = price
+        return True
+
+    return False
+
+    # if item not in theDictionary:
+    #     return False
+    #
+    # theDictionary[item] = price
+    #
+    # return True
 
 
 def getMenuItemPrice (theDictionary, item):
@@ -347,18 +316,80 @@ def averagePrice (theDictionary):
     return average
 
 
-# TODO
 def takeOrder (theDictionary):
-    """
-    # TODO
+    """Create a mock order for a number of items from the menu.
+
     :param dict[str, float] theDictionary:
         Dict containing menu items as keys and respective prices as
         prices.
-    :return:
-
+    :except ValueError:
+        Quantities of items should be input as ints.
     :rtype:
     """
-    pass
+    # CAO 20220429
+    btcRate = 0.000026
+    orderItems = {}
+    menuItems = list(theDictionary.keys())
+
+
+    print("Welcome to Burger Hut! Here is our menu:")
+    printMenu(theDictionary)
+    print("\nEnter desired menu items when prompted."
+          "Press \"Enter\" at the prompt to complete your order.")
+
+    while True:
+        if len(orderItems) == 0:
+            order = input("What can I get started for you today? "
+                          "").upper().strip()
+        else:
+            order = input("What else can I get for you? ").upper().strip()
+
+        if order == "":
+            break
+        elif order not in theDictionary:
+            comebacks = [
+                f"{order} was a limited time item that we're not serving at "
+                f"the moment.",
+                f"{order} is not an item that we serve. How about a "
+                f"{menuItems[randint(0, len(menuItems) - 1)]} instead?"
+            ]
+
+            print(comebacks[randint(0, len(comebacks) - 1)])
+        else:
+            while True:
+                quantityPrompt = input("How may of those would you like? "
+                                       "").strip()
+                try:
+                    quantity = int(quantityPrompt)
+                    break
+                except ValueError:
+                    print(f"{quantityPrompt} is not a valid quantity.")
+
+
+            if order not in orderItems:
+                orderItems[order] = quantity
+            else:
+                orderItems[order] = orderItems[order] + quantity
+
+    if len(orderItems) > 0:
+        print("\nYour order:")
+        for key, value in orderItems.items():
+            numX = str(value) + "x"
+            print(f"{numX:<3s} {key}")
+        print()
+
+        total = 0.0
+        for item in orderItems:
+            amount = orderItems[item] * theDictionary[item]
+            total += amount
+        btcTotal = total * btcRate
+
+        print(f"Your total comes to ${total}.\n"
+              f"We would also accept {btcTotal:.6f} Bitcoin.\n"
+              f"How would you like to pay?")
+
+    else:
+        print("That person left without ordering anything. How strange....")
 
 
 def printMenu (theDictionary):
@@ -395,26 +426,28 @@ def printMenu (theDictionary):
     for key, value in theDictionary.items():
         print(
             f"{key}" +
-            # - 1 to account for "$"
-            "." * (totalWidth - len(key) - len(str(value)) - 1) +
-            f"${value:>.2f}"
+            # whole dollar amount is float w/ only 1x 0 after decimal
+            "." * (totalWidth - len(key) - len(str(value)) - (
+                # - 1 to account for "$"
+                # - 2 to account for whole dollar amount + "$"
+                1 if value % 1 != 0 else 2
+            )) +
+            f"${value:{priceColumnWidth - 3 }.2f}"
         )
 
 
-# FIXME - print tests in order specified in "Display" instructions
 def main():
     print("Enter name of data text file containing menu items and prices.")
-    # FIXME
-    # dataFile = promptTextFileRead()
-    # if not dataFile:
-    #     print("Data file not found.\nExiting program.")
-    #     exit()
+    dataFile = promptTextFileRead()
+    if not dataFile:
+        print("Data file not found.\nExiting program.")
+        exit()
 
     # testing readMenuItems
-    # FIXME
-    dataFile = "burger_menu.txt"
+    print("Lets take a look at the menu.")
     menu = readMenuItems(dataFile)
     print(menu)
+    print()
 
     # testing totalMenuItems
     total = totalMenuItems(menu)
@@ -438,19 +471,44 @@ def main():
         else:
             print(f"There are no menu items priced between ${r[0]} and "
                   f"${r[1]}.")
-
     print()
 
     # testing takeOrder
-
+    takeOrder(menu)
     print()
 
     # testing addMenuItem
+    newMenuItems = {"beesechurger": 42.000001, "cheeseburger": 8.49}
 
+    for key, value in newMenuItems.items():
+        key = key.upper()
+        value = round(float(value), 2)
+        addedItem = addMenuItem(menu, key, value)
+
+        if addedItem:
+            print(f"{key} added to the menu for the price of ${value:.2f}.")
+        else:
+            print(f"{key} already exists on the menu.")
+
+    print("New Menu:")
+    print(menu)
     print()
 
     # testing updateMenuItem
+    newMenuItems = {"beesechurger": 69.69, "chicken sandwich": 8.49}
 
+    for key, value in newMenuItems.items():
+        key = key.upper()
+        value = round(float(value), 2)
+        updatedItem = updateMenuItem(menu, key, value)
+
+        if updatedItem:
+            print(f"Updated price of {key} to ${value:.2f}.")
+        else:
+            print(f"{key} is not a menu item.")
+
+    print("Updated Menu:")
+    print(menu)
     print()
 
     # testing getMenuItemPrice
@@ -467,7 +525,6 @@ def main():
             print(f"The price of {item.upper()}: ${price}")
         else:
             print(f"{item.upper()} is not on the menu.")
-
     print()
 
     # testing averagePrice
@@ -477,15 +534,6 @@ def main():
 
     # testing printMenu
     printMenu(menu)
-
-    # FIXME
-    """
-    :param dict[str, float] theDictionary:
-        Dict containing menu items as keys and respective prices as
-        prices.
-    """
-
-
 
 
 if __name__ == "__main__":
