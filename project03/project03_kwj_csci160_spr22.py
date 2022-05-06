@@ -36,11 +36,33 @@ Required Functions:
 
 # TODO
 Discretionary Functions:
+    standardHonorPoints()
+        - Establishes the standard system of honor points by grade.
 
 
 
 
 """
+
+
+# discretionary
+def standardHonorPoints():
+    """Establishes the standard system of honor points by grade.
+
+    :return:
+        A dictionary with grades as the keys and standard number of
+        honor points as the respective value.
+    :rtype: dict[str, int]
+    """
+    honorPoints = {
+        "A": 4,
+        "B": 3,
+        "C": 2,
+        "D": 1,
+        "F": 0
+    }
+
+    return honorPoints
 
 
 # TODO
@@ -55,7 +77,33 @@ def writeClassInfo(fileName, classes):
 
 # TODO
 def addClass(classes, className, grade, credits):
-    pass
+    """Adds className, grade, and credits to classes.
+
+    Only adds information to classes if className is not already in
+    classes.
+
+    :param dict classes:
+        The class information. Format:
+            classes = {className: {"grade": grade, "credits", credits}}
+    :param str className:
+        The name of the class to be added to classes.
+    :param str grade:
+        The grade received for className.
+    :param int credits:
+        The number of credits className is worth.
+    :return:
+        Returns True if className added to classes (i.e., className was
+        not already in classes), else False.
+    :rtype: bool
+    """
+    if className in classes:
+        return False
+    else:
+        className = className.upper()
+        grade = grade.upper()
+        credits = int(credits)
+        classes[className] = {"grade": grade, "credits": credits}
+        return True
 
 
 # TODO
@@ -95,7 +143,9 @@ def main():
     :rtype: None
     """
 
-    pass
+    classes = {}
+    if addClass(classes, "math 107", "a", 4):
+        print("yolo")
 
 
 if __name__ == "__main__":
