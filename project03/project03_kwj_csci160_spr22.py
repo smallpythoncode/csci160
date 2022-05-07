@@ -18,7 +18,7 @@ Required Functions:
     writeClassInfo(fileName, classes)
         - #TODO
     addClass(classes, className, grade, credits)
-        - #TODO
+        - Adds className, grade, and credits to classes.
     attemptedCredits(classes)
         - #TODO
     passedCredits(classes)
@@ -33,6 +33,19 @@ Required Functions:
         - #TODO
     main()
         - Testing all of the required functions.
+        # TODO
+        Order of testing:
+            1. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
+            #. fdsa
 
 # TODO
 Discretionary Functions:
@@ -67,7 +80,25 @@ def standardHonorPoints():
 
 # TODO
 def readClassInfo(fileName):
-    pass
+    """
+
+    :param str fileName:
+        The name of the text file containing class information.
+    :return:
+        The class information. Format:
+            classes = {className: {"grade": grade, "credits", credits}}
+    :rtype: dict
+    """
+    classInfo = {}
+
+    with open(fileName, "r") as f:
+        for line in f:
+            tempClassInfo = line
+            className, grade, numCredits = tempClassInfo.split("\t")
+
+            addClass(classInfo, className, grade, numCredits)
+
+    return classInfo
 
 
 # TODO
@@ -75,12 +106,16 @@ def writeClassInfo(fileName, classes):
     pass
 
 
-# TODO
 def addClass(classes, className, grade, credits):
     """Adds className, grade, and credits to classes.
 
     Only adds information to classes if className is not already in
     classes.
+
+    .. note::
+        credits parameter shadows built-in function credits(). If not
+        mandated by assignment instructions, parameter name would be
+        altered to numCredits.
 
     :param dict classes:
         The class information. Format:
@@ -142,10 +177,47 @@ def main():
 
     :rtype: None
     """
+    honorPoints = standardHonorPoints()
+    print(honorPoints)
+
+    print("\nTesting readClassInfo:")
+    # TODO
+
+    print("\nTesting addClass:")
+    # TODO
+
+    print("\nTesting updateGrade:")
+    # TODO
+
+    print("\nTesting writeClassInfo:")
+    # TODO
+
+    print("\nTesting attemptedCredits:")
+    # TODO
+
+    print("\nTesting passedCredits:")
+    # TODO
+
+    print("\nTesting printClasses:")
+    # TODO
+
+    print("\nTesting getGPA:")
+    # TODO
+
+    print("\nTesting classStatus:")
+    # TODO
+
+
+
+
+
+
 
     classes = {}
+    print(classes)
     if addClass(classes, "math 107", "a", 4):
         print("yolo")
+    print(classes)
 
 
 if __name__ == "__main__":
