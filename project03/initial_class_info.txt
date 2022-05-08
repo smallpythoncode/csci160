@@ -1,0 +1,2 @@
+CSCI 160	A	4
+MATH 107	B	4
