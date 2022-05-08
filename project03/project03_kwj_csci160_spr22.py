@@ -4,16 +4,13 @@ CSCI 160, Spring 2022, Lecture Sect 02, Lab Sect L03
 Project 03
 Copyright (C) 2022 Kenneth Jahnke
 
-# FIXME due Monday, May 9
-
 Assignment:
     - Write a text file with each line containing class name, grade for
-    class, and the number of credits the class is worth. Separate data
-    elements by a tab character.
+      class, and the number of credits the class is worth. Separate data
+      elements by a tab character.
     - Write the required functions to display/manipulate the data and
-    test each in function main.
+      test each function main.
 
-# TODO
 Required Functions:
     readClassInfo(fileName)
         - Read class data from fileName.
@@ -22,9 +19,9 @@ Required Functions:
     addClass(classes, className, grade, credits)
         - Adds className, grade, and credits to classes.
     attemptedCredits(classes)
-        - #TODO
+        - Calculates the number of credits a student attempted.
     passedCredits(classes)
-        - #TODO
+        - Calculates the number of credits a student passed.
     printClasses(classes)
         - Print class info an orderly table followed by the GPA.
     getGPA(classes)
@@ -32,28 +29,38 @@ Required Functions:
     updateGrade(classes, className, newGrade)
         - Updates grade for className to newGrade.
     classStatus(classes)
-        - #TODO
+        - Determines the class status of the student based on credits.
     main()
         - Testing all of the required functions.
         Order of testing:
             1. readClassInfo
-            #. addClass
-            #. updateGrade
-            #. writeClassInfo
-            #. printClasses
-            #. attemptedCredits
-            #. passedCredits
-            #. getGPA
-            #. classStatus
+            2. addClass
+            3. updateGrade
+            4. writeClassInfo
+            5. printClasses
+            6. attemptedCredits
+            7. passedCredits
+            8. getGPA
+            9. classStatus
 
-# TODO
 Discretionary Functions:
     standardHonorPoints()
         - Establishes the standard system of honor points by grade.
 
+Accompanying Text Files:
+    initial_class_info.txt
+        - The file mandated by assignment (See Assignment section).
+    updated_class_info.txt
+        - A copy of the file that results from main testing of
+          writeClassInfo
+    student2_class_info.txt
+        - An alternate data file that could be used via readClassInfo
 
-
-
+.. note::
+    Original lines 385, 386 left in for insight into development
+    process. Dev elected to comment these out and hard code Student 1
+    data at lines 388-392 and Student 2 data at lines 393-416 to ensure
+    functionality at assignment turn-in.
 """
 
 
@@ -163,33 +170,78 @@ def addClass(classes, className, grade, credits):
         return True
 
 
-# TODO
 def attemptedCredits(classes):
-    pass
+    """Calculates the number of credits a student attempted.
+
+    :param dict classes:
+        The class information. Format:
+            classes = {className: {"grade": grade, "credits",
+            numCredits}}
+    :return:
+        The number of credits the student attempted.
+    :rtype: int
+    """
+    numCredits = 0
+    classList = list(classes.keys())
+
+    for c in classList:
+        numCredits += classes[c]["credits"]
+
+    return numCredits
 
 
-# TODO
 def passedCredits(classes):
-    pass
+    """Calculates the number of credits a student passed.
+
+    :param dict classes:
+        The class information. Format:
+            classes = {className: {"grade": grade, "credits",
+            numCredits}}
+    :return:
+        The number of credits the student passed.
+    :rtype: int
+    """
+    numCredits = 0
+    classList = list(classes.keys())
+
+    for c in classList:
+        if classes[c]["grade"] != "F":
+            numCredits += classes[c]["credits"]
+
+    return numCredits
 
 
-# TODO
 def printClasses(classes):
     """Print class info an orderly table followed by the GPA.
 
-    :param classes:
+    :param dict classes:
         The class information. Format:
             classes = {className: {"grade": grade, "credits",
             numCredits}}
     :rtype: None
     """
-    pass
+    classNum = 1
+    classList = list(classes.keys())
+
+    print("{} {:<11}   {}   {}".format(" " * 3, "Class", "Grade", "Credits"))
+    for c in classList:
+        counter = str(classNum) + "."
+        print("{:<3s} {:<11s}   {:^5s}   {:>7d}".format(
+                counter,
+                c,
+                classes[c]["grade"],
+                classes[c]["credits"]
+                )
+              )
+        classNum += 1
+
+    print(f"\nOverall GPA: {getGPA(classes)}")
 
 
 def getGPA(classes):
     """Calculates the GPA based on data in classes.
 
-    :param classes:
+    :param dict classes:
         The class information. Format:
             classes = {className: {"grade": grade, "credits",
             numCredits}}
@@ -241,12 +293,26 @@ def updateGrade(classes, className, newGrade):
         return True
 
 
-# TODO
 def classStatus(classes):
-    pass
+    """Determines the class status of the student based on credits.
+
+    :param dict classes:
+        The class information. Format:
+            classes = {className: {"grade": grade, "credits",
+            numCredits}}
+    :return:
+        The status of the student.
+    :rtype: str
+    """
+    uniYears = {"Freshman": 0, "Sophomore": 24, "Junior": 60, "Senior": 90}
+    statuses = reversed(list(uniYears.keys()))
+    numCreditsPassed = passedCredits(classes)
+
+    for status in statuses:
+        if numCreditsPassed >= uniYears[status]:
+            return status
 
 
-# TODO
 def main():
     """Testing all of the required functions.
 
@@ -312,27 +378,60 @@ def main():
     writeClassInfo(updatedDataFile, classes)
 
     print("\nTesting printClasses:")
-    # TODO
+    printClasses(classes)
 
-    print("\nFor demonstration of functionality, we will look at "
+    print("\nFor demonstration of functionality, we will look at data for "
           "Student 1 and Student 2.")
-    student1 = classes
-    student2 = readClassInfo("student2_class_info")
+    # student1 = classes
+    # student2 = readClassInfo("student2_class_info.txt")
+    # hard coded to ensure functionality at assignment turn-in
+    student1 = {
+        'CSCI 160': {'grade': 'A', 'credits': 4},
+        'MATH 107': {'grade': 'A', 'credits': 4},
+        'MATH 208': {'grade': 'A', 'credits': 3}
+    }
+    student2 = {
+        'CSCI 160': {'grade': 'A', 'credits': 4},
+        'MATH 107': {'grade': 'A', 'credits': 4},
+        'MATH 208': {'grade': 'C', 'credits': 3},
+        'CSCI 161': {'grade': 'C', 'credits': 4},
+        'CSCI 289': {'grade': 'B', 'credits': 3},
+        'MATH 165': {'grade': 'A', 'credits': 4},
+        'CSCI 242': {'grade': 'A', 'credits': 3},
+        'MATH 166': {'grade': 'A', 'credits': 4},
+        'CSCI 265': {'grade': 'B', 'credits': 3},
+        'EE 201': {'grade': 'A', 'credits': 3},
+        'EE 201L': {'grade': 'A', 'credits': 1},
+        'CSCI 266': {'grade': 'B', 'credits': 3},
+        'BIOL 150': {'grade': 'C', 'credits': 3},
+        'BIOL 150L': {'grade': 'C', 'credits': 1},
+        'CSCI 330': {'grade': 'A', 'credits': 3},
+        'BIOL 151': {'grade': 'F', 'credits': 3},
+        'BIOL 151L': {'grade': 'F', 'credits': 1},
+        'MATH 321': {'grade': 'C', 'credits': 3},
+        'CSCI 280': {'grade': 'B', 'credits': 3},
+        'CSCI 327': {'grade': 'A', 'credits': 3},
+        'CSCI 384': {'grade': 'C', 'credits': 3},
+        'CSCI 370': {'grade': 'A', 'credits': 4}
+    }
     print(f"Class info for Student 1:\n\t{student1}")
     print(f"Class info for Student 2:\n\t{student2}")
 
     print("\nTesting attemptedCredits:")
-    # TODO
+    print(f"Student 1's attempted credits: {attemptedCredits(student1)}")
+    print(f"Student 2's attempted credits: {attemptedCredits(student2)}")
 
     print("\nTesting passedCredits:")
-    # TODO
+    print(f"Student 1's passed credits: {passedCredits(student1)}")
+    print(f"Student 2's passed credits: {passedCredits(student2)}")
 
     print("\nTesting getGPA:")
     print(f"Student 1 GPA: {getGPA(student1):.3f}")
     print(f"Student 2 GPA: {getGPA(student2):.3f}")
 
     print("\nTesting classStatus:")
-    # TODO
+    print(f"Class status of Student 1: {classStatus(student1)}")
+    print(f"Class status of Student 2: {classStatus(student2)}")
 
 
 if __name__ == "__main__":
